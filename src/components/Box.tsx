@@ -1,5 +1,12 @@
 import React from 'react';
-import { ImageBackground, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import {
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import BlurImage from '@/assets/BlurView.png';
 import { useAppSafeArea } from '@/hooks';
@@ -32,14 +39,17 @@ export function Box({ children, blur, scrollable = false }: Props) {
         showsVerticalScrollIndicator={false}>
         {blur ? (
           <ImageBackground
-            className="flex-1"
             source={BlurImage}
-            style={{
-              flex: 1,
-              marginHorizontal: -20,
-              marginTop: -top,
-              marginBottom: -bottom,
-            }}>
+            style={[
+              {
+                flex: 1,
+                paddingHorizontal: 20,
+                paddingTop: top,
+                paddingBottom: bottom,
+                justifyContent: 'center',
+              },
+              StyleSheet.absoluteFill,
+            ]}>
             {children}
           </ImageBackground>
         ) : (
