@@ -24,6 +24,7 @@ export function PasswordInput({ ...textInputProps }: PasswordInputProps) {
           onPress={toggleSecureTextEntry}
           color={colors.gray[400]}
           size={24}
+          opacity={0.5}
         />
       }
     />
