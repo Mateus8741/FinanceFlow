@@ -2,6 +2,8 @@ export const colors = {
   white: '#ffffff',
   black: '#000000',
 
+  glassLight: '#FFFFFF8C',
+
   orange: '#fe5816',
 
   gray: {

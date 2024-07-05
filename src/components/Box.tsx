@@ -30,7 +30,7 @@ export function Box({ children, blur, scrollable = false }: Props) {
       <Container
         style={{
           flex: 1,
-          backgroundColor: colors.gray.bg,
+          backgroundColor: colors.white,
           paddingHorizontal: 20,
           paddingTop: top,
           paddingBottom: bottom,
@@ -46,7 +46,6 @@ export function Box({ children, blur, scrollable = false }: Props) {
                 paddingHorizontal: 20,
                 paddingTop: top,
                 paddingBottom: bottom,
-                justifyContent: 'center',
               },
               StyleSheet.absoluteFill,
             ]}>
