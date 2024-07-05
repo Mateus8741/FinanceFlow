@@ -1,19 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { LoginScreen } from '@/screens/LoginScreen';
 
-import 'react-native-gesture-handler';
 import './global.css';
 
 export default function App() {
   return (
-    <>
-      <StatusBar style="auto" animated translucent />
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StatusBar style="auto" animated translucent />
 
-      <View className="bg-gray-bg flex-1">
         <LoginScreen />
-      </View>
-    </>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
