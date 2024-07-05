@@ -1,15 +1,17 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 
+import BlurImage from '@/assets/BlurView.png';
 import { useAppSafeArea } from '@/hooks';
 import { colors } from '@/theme/colors';
 
 interface Props {
   children: React.ReactNode;
   scrollable?: boolean;
+  blur?: boolean;
 }
 
-export function Box({ children, scrollable = false }: Props) {
+export function Box({ children, blur, scrollable = false }: Props) {
   const { top, bottom } = useAppSafeArea();
 
   const Container = scrollable ? ScrollView : View;
@@ -28,7 +30,21 @@ export function Box({ children, scrollable = false }: Props) {
         }}
         bounces={false}
         showsVerticalScrollIndicator={false}>
-        {children}
+        {blur ? (
+          <ImageBackground
+            className="flex-1"
+            source={BlurImage}
+            style={{
+              flex: 1,
+              marginHorizontal: -20,
+              marginTop: -top,
+              marginBottom: -bottom,
+            }}>
+            {children}
+          </ImageBackground>
+        ) : (
+          children
+        )}
       </Container>
     </KeyboardAvoidingView>
   );
