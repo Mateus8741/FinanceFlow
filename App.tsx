@@ -1,6 +1,7 @@
-import { StatusBar } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { View } from 'react-native';
 
-import { LoginScreen } from '~/screens/LoginScreen';
+import { LoginScreen } from '@/screens/LoginScreen';
 
 import 'react-native-gesture-handler';
 import './global.css';
@@ -8,9 +9,11 @@ import './global.css';
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar style="auto" animated translucent />
 
-      <LoginScreen />
+      <View className="bg-gray-bg flex-1">
+        <LoginScreen />
+      </View>
     </>
   );
 }
