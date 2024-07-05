@@ -20,7 +20,7 @@ export function PasswordInput({ ...textInputProps }: PasswordInputProps) {
       {...textInputProps}
       rightComponent={
         <MaterialCommunityIcons
-          name={isSecureTextEntry ? 'eye-outline' : 'eye-off-outline'}
+          name={isSecureTextEntry ? 'eye-off-outline' : 'eye-outline'}
           onPress={toggleSecureTextEntry}
           color={colors.gray[400]}
           size={24}

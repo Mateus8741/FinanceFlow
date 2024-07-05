@@ -42,7 +42,7 @@ export function TextInput({
           <View className="w-full flex-row items-center rounded-xl bg-white py-2">
             {leftComponent && <View className="mx-2 justify-center">{leftComponent}</View>}
             <RNTextInput
-              className={`px-5 ${$HEIGHT} text-white`}
+              className={`px-5 ${$HEIGHT} text-black`}
               placeholderTextColor={colors.gray[400]}
               autoCapitalize="none"
               cursorColor="white"
