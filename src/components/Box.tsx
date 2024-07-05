@@ -1,3 +1,4 @@
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import {
   ImageBackground,
@@ -21,6 +22,10 @@ interface Props {
 export function Box({ children, blur, scrollable = false }: Props) {
   const { top, bottom } = useAppSafeArea();
 
+  const { colorScheme } = useColorScheme();
+
+  console.log('colorScheme', colorScheme);
+
   const Container = scrollable ? ScrollView : View;
 
   return (
@@ -30,7 +35,7 @@ export function Box({ children, blur, scrollable = false }: Props) {
       <Container
         style={{
           flex: 1,
-          backgroundColor: colors.white,
+          backgroundColor: colorScheme === 'dark' ? colors.gray.bg : colors.white,
           paddingHorizontal: 20,
           paddingTop: top,
           paddingBottom: bottom,
