@@ -14,7 +14,7 @@ export function LoginScreen() {
           className="overflow-hidden rounded-lg border border-white bg-white px-6 py-7"
           style={{ backgroundColor: colors.glassLight }}>
           <Text className="mb-4 text-center text-5xl font-bold">Login</Text>
-          <Text className="mb-5 text-center text-lg text-gray-400">
+          <Text className="mb-5 text-center text-lg text-gray-400 dark:bg-orange">
             Entre e controle suas finaças
           </Text>
 

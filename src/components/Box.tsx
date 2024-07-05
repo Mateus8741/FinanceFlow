@@ -11,7 +11,6 @@ import {
 
 import BlurImage from '@/assets/BlurView.png';
 import { useAppSafeArea } from '@/hooks';
-import { colors } from '@/theme/colors';
 
 interface Props {
   children: React.ReactNode;
@@ -24,8 +23,6 @@ export function Box({ children, blur, scrollable = false }: Props) {
 
   const { colorScheme } = useColorScheme();
 
-  console.log('colorScheme', colorScheme);
-
   const Container = scrollable ? ScrollView : View;
 
   return (
@@ -35,11 +32,12 @@ export function Box({ children, blur, scrollable = false }: Props) {
       <Container
         style={{
           flex: 1,
-          backgroundColor: colorScheme === 'dark' ? colors.gray.bg : colors.white,
+          // backgroundColor: colorScheme === 'dark' ? colors.gray.bg : colors.white,
           paddingHorizontal: 20,
           paddingTop: top,
           paddingBottom: bottom,
         }}
+        className="dark:bg-gray-bg flex-1 bg-white"
         bounces={false}
         showsVerticalScrollIndicator={false}>
         {blur ? (
