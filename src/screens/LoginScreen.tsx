@@ -1,14 +1,14 @@
+import { useColorScheme } from 'nativewind';
 import { ImageBackground, Text, View } from 'react-native';
 
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, PasswordInput, TextInput } from '@/components';
-import { useThemeStorage } from '@/contexts/useTheme';
 
 export function LoginScreen() {
-  const { theme } = useThemeStorage();
+  const { colorScheme } = useColorScheme();
 
-  const BlurFormColor = theme === 'dark' ? BlurFormDark : BlurFormLight;
+  const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   return (
     <Box blur>
