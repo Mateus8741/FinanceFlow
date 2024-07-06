@@ -36,13 +36,13 @@ export function TextInput({
 
   return (
     <>
-      <View className={`rounded-xl border-2 border-gray-100 ${moreClassName}`}>
+      <View className={`${moreClassName}`}>
         <Pressable onPress={focusInput}>
           {label && <Text className="mb-2 font-bold text-white">{label}</Text>}
-          <View className="w-full flex-row items-center rounded-xl bg-white py-2">
+          <View className="dark:border-gray-700 w-full flex-row items-center rounded-xl border-2 border-gray-100 bg-white py-2 shadow-sm shadow-gray-300 dark:bg-gray-bg dark:shadow-gray-400/40">
             {leftComponent && <View className="mx-2 justify-center">{leftComponent}</View>}
             <RNTextInput
-              className={`px-5 ${$HEIGHT} text-black`}
+              className={`px-5 ${$HEIGHT} text-black dark:text-white`}
               placeholderTextColor={colors.gray[400]}
               autoCapitalize="none"
               cursorColor="white"
