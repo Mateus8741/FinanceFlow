@@ -3,6 +3,7 @@ export const colors = {
   black: '#000000',
 
   glassLight: '#FFFFFF8C',
+  glassDark: '#0D0D0D',
 
   orange: '#fe5816',
 

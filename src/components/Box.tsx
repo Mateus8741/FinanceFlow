@@ -32,12 +32,11 @@ export function Box({ children, blur, scrollable = false }: Props) {
       <Container
         style={{
           flex: 1,
-          // backgroundColor: colorScheme === 'dark' ? colors.gray.bg : colors.white,
           paddingHorizontal: 20,
           paddingTop: top,
           paddingBottom: bottom,
         }}
-        className="dark:bg-gray-bg flex-1 bg-white"
+        className="flex-1 bg-white dark:bg-gray-bg"
         bounces={false}
         showsVerticalScrollIndicator={false}>
         {blur ? (

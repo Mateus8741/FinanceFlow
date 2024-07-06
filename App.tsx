@@ -1,17 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useThemeStorage } from '@/contexts/useTheme';
 import { LoginScreen } from '@/screens/LoginScreen';
 import { useThemeChanger } from '@/service';
+
+import { Button } from 'react-native';
 import './global.css';
 
 export default function App() {
   const { theme } = useThemeStorage();
-  const { setColorScheme } = useThemeChanger();
+  const { setColorScheme, handleThemeChange } = useThemeChanger();
 
   useEffect(() => {
     if (theme) {
@@ -24,9 +25,8 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar style="auto" animated translucent />
 
-        <View className="flex-1">
-          <LoginScreen />
-        </View>
+        <LoginScreen />
+        <Button title="Change Theme" onPress={handleThemeChange} />
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );
