@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { Routes } from '@/Routes/Routes';
 import { useThemeStorage } from '@/contexts/useTheme';
-import { RegisterScreen } from '@/screens';
 import { useThemeChanger } from '@/service';
 
 import './global.css';
@@ -24,7 +24,7 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar style="auto" animated translucent />
 
-        <RegisterScreen />
+        <Routes />
         {/* <Button title="Change Theme Light" onPress={() => handleThemeChange('light')} />
         <Button title="Change Theme Dark" onPress={() => handleThemeChange('dark')} />
         <Button title="Change Theme System" onPress={() => handleThemeChange('system')} /> */}

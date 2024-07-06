@@ -22,7 +22,7 @@ export function RegisterScreen() {
             resizeMode="cover"
             className="rounded-full px-6 py-7">
             <Text className="mb-4 text-center text-5xl font-bold dark:text-white">Registrar</Text>
-            <Text className="dark:text-gray-200 text-center text-lg text-gray-400">
+            <Text className="text-center text-lg text-gray-400 dark:text-gray-200">
               Crie uma conta e continue
             </Text>
 
@@ -48,8 +48,8 @@ export function RegisterScreen() {
 
             <OrView />
 
-            <View className="flex-row items-center justify-center gap-x-2">
-              <Text className="dark:text-gray-200 text-center text-gray-400">
+            <View className="flex-row items-center justify-center gap-x-1">
+              <Text className="text-center text-gray-400 dark:text-gray-200">
                 Já tem uma conta?
               </Text>
               <Pressable>
