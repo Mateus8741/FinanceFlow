@@ -10,6 +10,7 @@ export function CustomButton({ title, isDisabled, ...rest }: ButtonProps) {
     <TouchableOpacity
       className="h-14 items-center justify-center rounded-2xl bg-blue-500"
       disabled={isDisabled}
+      activeOpacity={0.7}
       {...rest}>
       {isDisabled ? (
         <ActivityIndicator size="small" color="white" />
