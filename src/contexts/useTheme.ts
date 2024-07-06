@@ -3,14 +3,14 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type ThemeProps = {
-  theme: 'light' | 'dark' | undefined;
-  setTheme: (theme: 'light' | 'dark' | undefined) => void;
+  theme: 'light' | 'dark' | 'system' | undefined;
+  setTheme: (theme: 'light' | 'dark' | 'system' | undefined) => void;
 };
 
 const useThemeStore = create<ThemeProps>()(
   persist(
     (set) => ({
-      theme: undefined,
+      theme: 'system',
       setTheme: (theme) => set({ theme }),
     }),
     {
