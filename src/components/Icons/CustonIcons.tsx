@@ -1,4 +1,3 @@
-// import { MaterialIcons } from '@expo/vector-icons';
 import { icons } from 'lucide-react-native';
 import Animated from 'react-native-reanimated';
 
