@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { LoginScreen, RegisterScreen } from '@/screens';
+import { ForgotScreen, LoginScreen, RegisterScreen } from '@/screens';
 
 export type AuthStackParamList = {
   LoginScreen: undefined;
   RegisterScreen: undefined;
+  ForgotScreen: undefined;
 };
 
 export function AuthStack() {
@@ -20,6 +21,7 @@ export function AuthStack() {
       }}>
       <Screen name="LoginScreen" component={LoginScreen} />
       <Screen name="RegisterScreen" component={RegisterScreen} />
+      <Screen name="ForgotScreen" component={ForgotScreen} />
     </Navigator>
   );
 }

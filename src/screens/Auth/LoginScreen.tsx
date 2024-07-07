@@ -17,7 +17,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   }
 
   function forgotPassword() {
-    console.log('Forgot Password');
+    navigation.navigate('ForgotScreen');
   }
 
   function goToRegister() {

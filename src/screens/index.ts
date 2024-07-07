@@ -1,3 +1,4 @@
+export * from './Auth/ForgotScreen';
 export * from './Auth/LoginScreen';
 export * from './Auth/RegisterScreen';
 
