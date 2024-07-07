@@ -16,6 +16,7 @@ export const colors = {
     600: '#2b2b2b',
     700: '#1c1c1c',
     bg: '#131316',
+    bgLight: '#f6f9fe',
     800: '#0d0d0d',
   },
 
