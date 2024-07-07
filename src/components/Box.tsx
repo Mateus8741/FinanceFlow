@@ -34,7 +34,7 @@ export function Box({ children, blur, scrollable = false }: Props) {
           paddingBottom: bottom,
         }}
         contentContainerStyle={StyleSheet.absoluteFillObject}
-        className=" bg-white dark:bg-gray-bg"
+        className=" bg-gray-bgLight dark:bg-gray-bg"
         bounces={false}
         showsVerticalScrollIndicator={false}>
         {blur ? (
