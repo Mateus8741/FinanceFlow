@@ -25,7 +25,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   }
 
   return (
-    <Box blur>
+    <Box blur scrollable>
       <View className="flex-1 justify-center">
         <View className="overflow-hidden rounded-lg">
           <ImageBackground

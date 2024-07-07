@@ -14,7 +14,7 @@ export function RegisterScreen() {
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   return (
-    <Box blur>
+    <Box blur scrollable>
       <View className="flex-1 justify-center">
         <View className="overflow-hidden rounded-lg">
           <ImageBackground

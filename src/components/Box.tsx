@@ -1,4 +1,3 @@
-import { useColorScheme } from 'nativewind';
 import React from 'react';
 import {
   ImageBackground,
@@ -21,8 +20,6 @@ interface Props {
 export function Box({ children, blur, scrollable = false }: Props) {
   const { top, bottom } = useAppSafeArea();
 
-  const { colorScheme } = useColorScheme();
-
   const Container = scrollable ? ScrollView : View;
 
   return (
@@ -36,7 +33,8 @@ export function Box({ children, blur, scrollable = false }: Props) {
           paddingTop: top,
           paddingBottom: bottom,
         }}
-        className="flex-1 bg-white dark:bg-gray-bg"
+        contentContainerStyle={StyleSheet.absoluteFillObject}
+        className=" bg-white dark:bg-gray-bg"
         bounces={false}
         showsVerticalScrollIndicator={false}>
         {blur ? (
