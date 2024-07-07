@@ -13,3 +13,9 @@ export function CustonIcons({ icon, color, size, entering }: IconProps) {
 
   return <AnimatedIcon size={size} color={color} entering={entering} />;
 }
+
+export function Icon({ icon, size, color }: IconProps) {
+  const IconComponent = icons[icon];
+
+  return <IconComponent size={size} color={color} />;
+}
