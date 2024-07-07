@@ -2,16 +2,25 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
 import { ImageBackground, Pressable, Text, View } from 'react-native';
 
+import { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, PasswordInput, TextInput } from '@/components';
 import { OrView } from '@/components/OrView';
 import { colors } from '@/theme/colors';
 
-export function RegisterScreen() {
+export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>) {
   const { colorScheme } = useColorScheme();
 
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
+
+  function handleRegister() {
+    console.log('Register');
+  }
+
+  function goToLogin() {
+    navigation.goBack();
+  }
 
   return (
     <Box blur scrollable>
@@ -44,7 +53,7 @@ export function RegisterScreen() {
               <PasswordInput placeholder="Senha" />
             </View>
 
-            <CustomButton title="Entrar" />
+            <CustomButton title="Entrar" onPress={handleRegister} />
 
             <OrView />
 
@@ -52,7 +61,7 @@ export function RegisterScreen() {
               <Text className="text-center text-gray-400 dark:text-gray-200">
                 Já tem uma conta?
               </Text>
-              <Pressable>
+              <Pressable onPress={goToLogin}>
                 <Text className="text-center font-bold text-blue-500">Fazer login</Text>
               </Pressable>
             </View>
