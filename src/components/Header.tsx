@@ -9,7 +9,7 @@ export function Header() {
   const { colorScheme } = useColorScheme();
 
   return (
-    <View className="flex-row items-center justify-between border-b border-gray-300 pb-3 dark:border-gray-400">
+    <View className="mb-5 flex-row items-center justify-between border-b border-gray-300 pb-3 dark:border-gray-400">
       <View className="flex-row items-center gap-x-3">
         <Image
           source={{

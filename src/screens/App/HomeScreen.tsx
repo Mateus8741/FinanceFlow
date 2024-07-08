@@ -1,9 +1,11 @@
-import { Text, View } from 'react-native';
+import { Box, Header, MoneyCard } from '@/components';
 
 export function HomeScreen() {
   return (
-    <View>
-      <Text>Home Screen</Text>
-    </View>
+    <Box>
+      <Header />
+
+      <MoneyCard cardType="total" value={1000} />
+    </Box>
   );
 }
