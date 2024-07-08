@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+
 import { Box, Header, MoneyCard } from '@/components';
 
 export function HomeScreen() {
@@ -6,6 +8,11 @@ export function HomeScreen() {
       <Header />
 
       <MoneyCard cardType="total" value={1000} />
+
+      <View className="mt-3 flex-row justify-between">
+        <MoneyCard cardType="income" value={1000} />
+        <MoneyCard cardType="outcome" value={1000} />
+      </View>
     </Box>
   );
 }
