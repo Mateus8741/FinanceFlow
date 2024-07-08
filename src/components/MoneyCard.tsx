@@ -41,12 +41,14 @@
 
 import { useColorScheme } from 'nativewind';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import { Icon } from './Icons/CustonIcons';
 
+import { useShowMoneyStorage } from '@/contexts';
 import { colors } from '@/theme/colors';
+import { FormatCurrency } from '@/utils';
 
 const iconStyles = tv({
   base: 'items-center justify-center rounded-2xl px-3',
@@ -91,13 +93,18 @@ interface MoneyCardProps {
 
 export function MoneyCard({ cardType = 'total', value }: MoneyCardProps) {
   const { colorScheme } = useColorScheme();
+  const { setShow, show } = useShowMoneyStorage();
+
+  const formatedValue = FormatCurrency(value);
 
   const iconColor = colorScheme && cardType ? textColors[colorScheme][cardType] : '';
+
+  const color = colorScheme === 'dark' ? colors.gray.bgLight : colors.gray.bg;
 
   const iconName = iconVariants[cardType];
 
   return (
-    <View className="w-full rounded-3xl bg-white p-5 shadow-sm dark:bg-glassDark dark:shadow-glassLight">
+    <View className="rounded-3xl bg-white px-3 py-4 shadow-sm dark:bg-glassDark dark:shadow-glassLight">
       <View className="flex-row items-center justify-between">
         <View className="flex-row gap-x-3">
           <View className={iconStyles({ cardType })}>
@@ -106,11 +113,17 @@ export function MoneyCard({ cardType = 'total', value }: MoneyCardProps) {
 
           <View>
             <Text className="text-sm text-gray-500 dark:text-gray-400">{title[cardType]}</Text>
-            <Text className="text-lg font-bold text-black dark:text-white">R$ {value}</Text>
+            <Text className="text-lg font-bold text-black dark:text-white">
+              {show && cardType === 'total' ? 'R$ ********' : formatedValue}
+            </Text>
           </View>
         </View>
 
-        {/* <Icon icon="Eye" size={24} color={color} /> */}
+        {cardType === 'total' && (
+          <Pressable onPress={() => setShow(!show)}>
+            <Icon icon={show ? 'EyeOff' : 'Eye'} size={24} color={color} />
+          </Pressable>
+        )}
       </View>
     </View>
   );
