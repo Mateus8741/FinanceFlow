@@ -20,8 +20,8 @@ export function MyCards() {
       </View>
 
       <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
-      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
-      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
+      <Card currentValue={1350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
+      <Card currentValue={9350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
     </View>
   );
 }

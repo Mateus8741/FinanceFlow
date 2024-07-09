@@ -44,7 +44,7 @@ export function Card({ currentValue, totalValue, dueDate, accountName }: CardPro
         <Text className="text-md text-black dark:text-white">{formattedCurrentValue}</Text>
       </View>
 
-      <View className="bg-gray-250 mb-1 h-3 flex-1 self-end rounded-full dark:bg-gray-700">
+      <View className="mb-1 h-3 flex-1 self-end rounded-full bg-gray-250 dark:bg-gray-700">
         <View className={`h-3 rounded-full ${barColor}`} style={{ width: `${percentage}%` }} />
       </View>
 
