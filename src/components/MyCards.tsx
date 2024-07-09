@@ -1,5 +1,5 @@
 import { useColorScheme } from 'nativewind';
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
 import { Card } from './Card';
 import { Icon } from './Icons/CustonIcons';
@@ -19,9 +19,43 @@ export function MyCards() {
         <Text className="text-lg text-black dark:text-white">meus cartões</Text>
       </View>
 
-      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
-      <Card currentValue={1350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
-      <Card currentValue={9350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <Card
+            currentValue={item.currentValue}
+            totalValue={item.totalValue}
+            dueDate={item.dueDate}
+            accountName={item.accountName}
+          />
+        )}
+        ItemSeparatorComponent={() => <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />}
+      />
     </View>
   );
 }
+
+const data = [
+  {
+    id: 1,
+    currentValue: 500,
+    totalValue: 1000,
+    dueDate: '10/10',
+    accountName: 'Cartão',
+  },
+  {
+    id: 2,
+    currentValue: 600,
+    totalValue: 1000,
+    dueDate: '10/10',
+    accountName: 'Cartão',
+  },
+  {
+    id: 3,
+    currentValue: 1000,
+    totalValue: 1000,
+    dueDate: '10/10',
+    accountName: 'Cartão',
+  },
+];
