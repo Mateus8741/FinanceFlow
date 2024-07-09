@@ -19,7 +19,9 @@ export function MyCards() {
         <Text className="text-lg text-black dark:text-white">meus cartões</Text>
       </View>
 
-      <Card />
+      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
+      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
+      <Card currentValue={350} totalValue={2000} dueDate="16/05" accountName="Nubank" />
     </View>
   );
 }
