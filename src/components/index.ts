@@ -1,3 +1,4 @@
+export * from './BillCard';
 export * from './Box';
 export * from './Card';
 export * from './CustomButton';

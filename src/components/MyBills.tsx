@@ -1,6 +1,7 @@
 import { useColorScheme } from 'nativewind';
 import { Text, View } from 'react-native';
 
+import { BillCard } from './BillCard';
 import { Icon } from './Icons/CustonIcons';
 
 import { colors } from '@/theme/colors';
@@ -17,6 +18,8 @@ export function MyBills() {
 
         <Text className="text-lg text-black dark:text-white">minhas faturas</Text>
       </View>
+
+      <BillCard />
     </View>
   );
 }
