@@ -19,7 +19,9 @@ export function MyBills() {
         <Text className="text-lg text-black dark:text-white">minhas faturas</Text>
       </View>
 
-      <BillCard />
+      {Array.from({ length: 3 }).map((_, index) => (
+        <BillCard key={index} accountName="Nubank" totalValue={1000} />
+      ))}
     </View>
   );
 }
