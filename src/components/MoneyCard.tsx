@@ -104,7 +104,7 @@ export function MoneyCard({ cardType = 'total', value }: MoneyCardProps) {
   const iconName = iconVariants[cardType];
 
   return (
-    <View className="rounded-3xl bg-white p-3 shadow-sm dark:bg-glassDark dark:shadow-glassLight">
+    <View className="rounded-3xl bg-white p-3 shadow-sm dark:bg-glassDark">
       <View className="flex-row items-center justify-between">
         <View className="flex-row gap-x-3">
           <View className={iconStyles({ cardType })}>
