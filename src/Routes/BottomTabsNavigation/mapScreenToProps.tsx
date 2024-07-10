@@ -26,6 +26,13 @@ export const mapScreenToProps: Record<
       unfocused: 'House',
     },
   },
+  TransactionScreen: {
+    label: 'Transações',
+    icon: {
+      focused: 'ArrowLeftRight',
+      unfocused: 'ArrowLeftRight',
+    },
+  },
   ProfileScreen: {
     label: 'Perfil',
     icon: {
