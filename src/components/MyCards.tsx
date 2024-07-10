@@ -1,5 +1,6 @@
 import { useColorScheme } from 'nativewind';
-import { FlatList, Text, View } from 'react-native';
+import { Fragment } from 'react';
+import { Text, View } from 'react-native';
 
 import { Card } from './Card';
 import { Icon } from './Icons/CustonIcons';
@@ -19,9 +20,10 @@ export function MyCards() {
         <Text className="text-lg text-black dark:text-white">meus cartões</Text>
       </View>
 
-      <FlatList
+      {/* <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
+        bounces={false}
         renderItem={({ item }) => (
           <Card
             currentValue={item.currentValue}
@@ -31,7 +33,20 @@ export function MyCards() {
           />
         )}
         ItemSeparatorComponent={() => <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />}
-      />
+      /> */}
+
+      {data.map((item) => (
+        <Fragment key={item.id}>
+          <Card
+            currentValue={item.currentValue}
+            totalValue={item.totalValue}
+            dueDate={item.dueDate}
+            accountName={item.accountName}
+          />
+
+          <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />
+        </Fragment>
+      ))}
     </View>
   );
 }
