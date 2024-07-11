@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { useColorScheme } from 'nativewind';
 import { Text, View } from 'react-native';
 
@@ -15,6 +17,10 @@ export function HeaderData({ title, subtitle }: HeaderDataProps) {
 
   const color = colorScheme === 'dark' ? colors.white : colors.gray.bg;
 
+  const formattedMonth = format(new Date(), 'MMMM', { locale: ptBR });
+
+  const year = new Date().getFullYear();
+
   return (
     <View className="flex-row items-center justify-between pb-3">
       <View>
@@ -24,8 +30,10 @@ export function HeaderData({ title, subtitle }: HeaderDataProps) {
 
       <View className="flex-row items-center gap-x-2">
         <View className="flex-row items-center">
-          <Text className="text-sm text-gray-500 dark:text-white">jan. </Text>
-          <Text className="text-lg font-bold text-gray-500 dark:text-white">2024</Text>
+          <Text className="text-sm capitalize text-gray-500 dark:text-white">
+            {formattedMonth}.{' '}
+          </Text>
+          <Text className="text-lg font-bold text-gray-500 dark:text-white">{year}</Text>
         </View>
 
         <Icon icon="Calendar" size={24} color={color} />
