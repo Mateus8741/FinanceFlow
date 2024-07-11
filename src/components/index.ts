@@ -10,4 +10,5 @@ export * from './MyBills';
 export * from './MyCards';
 export * from './PasswordInput';
 export * from './TextInput';
+export * from './TransactionCard';
 
