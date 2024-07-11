@@ -51,16 +51,21 @@ const iconColors = {
 
 interface TransactionScreenProps {
   type: 'income' | 'outcome';
-  data: {
-    billingTitle: string;
-    name: string;
-    date: string;
-    value: number;
-    payment: string;
-  };
+  billingTitle: string;
+  name: string;
+  date: string;
+  value: number;
+  payment: string;
 }
 
-export function TransactionCard({ type, data }: TransactionScreenProps) {
+export function TransactionCard({
+  type,
+  billingTitle,
+  name,
+  date,
+  value,
+  payment,
+}: TransactionScreenProps) {
   const { colorScheme } = useColorScheme();
 
   const { transactionContainer, iconWrapper, labelContainer, typeBadge, amountText } =
@@ -76,7 +81,7 @@ export function TransactionCard({ type, data }: TransactionScreenProps) {
           <Icon icon="PiggyBank" size={20} color="black" />
         </View>
 
-        <Text className="font-bold text-black dark:text-white">{data.billingTitle}</Text>
+        <Text className="font-bold text-black dark:text-white">{billingTitle}</Text>
       </View>
 
       <View className={transactionContainer()}>
@@ -85,7 +90,7 @@ export function TransactionCard({ type, data }: TransactionScreenProps) {
         </View>
 
         <View className={labelContainer()}>
-          <Text className="font-bold text-black dark:text-white">{data.name}</Text>
+          <Text className="font-bold text-black dark:text-white">{name}</Text>
 
           <View className="flex-row items-center justify-between">
             <View className={typeBadge()}>
@@ -96,13 +101,13 @@ export function TransactionCard({ type, data }: TransactionScreenProps) {
 
             <Text className={amountText()}>
               {type === 'outcome' ? '- ' : ''}
-              R$ {data.value}
+              R$ {value}
             </Text>
           </View>
 
           <View className="flex-row items-center justify-between">
-            <Text className="text-md text-gray-400">{data.payment}</Text>
-            <Text className="text-md text-gray-400">{data.date}</Text>
+            <Text className="text-md text-gray-400">{payment}</Text>
+            <Text className="text-md text-gray-400">{date}</Text>
           </View>
         </View>
       </View>

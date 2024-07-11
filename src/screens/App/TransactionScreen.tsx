@@ -13,9 +13,12 @@ export function TransactionScreen() {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <TransactionCard
-            type={item.type as any}
-            data={item}
-            key={item.billingTitle + item.name + item.date + item.value + item.payment}
+            type={item.type as 'income' | 'outcome'}
+            billingTitle={item.billingTitle}
+            name={item.name}
+            date={item.date}
+            value={item.value}
+            payment={item.payment}
           />
         )}
         contentContainerStyle={{ paddingTop: 20 }}
