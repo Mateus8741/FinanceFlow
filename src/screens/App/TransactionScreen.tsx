@@ -1,11 +1,9 @@
-import { Text } from 'react-native';
-
-import { Box } from '@/components';
+import { Box, HeaderData } from '@/components';
 
 export function TransactionScreen() {
   return (
     <Box>
-      <Text>TransactionScreen</Text>
+      <HeaderData title="Suas transações" subtitle="mensais" />
     </Box>
   );
 }
