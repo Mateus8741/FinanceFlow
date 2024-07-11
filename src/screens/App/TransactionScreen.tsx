@@ -14,11 +14,8 @@ export function TransactionScreen() {
         renderItem={({ item }) => (
           <TransactionCard
             type={item.type as any}
-            billingTitle={item.billingTitle}
-            name={item.name}
-            date={item.date}
-            value={item.value}
-            payment={item.payment}
+            data={item}
+            key={item.billingTitle + item.name + item.date + item.value + item.payment}
           />
         )}
         contentContainerStyle={{ paddingTop: 20 }}
