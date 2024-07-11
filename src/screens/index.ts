@@ -4,5 +4,6 @@ export * from './Auth/RegisterScreen';
 
 export * from './App/HomeScreen';
 export * from './App/ProfileScreen';
+export * from './App/ResumeScreen';
 export * from './App/TransactionScreen';
 

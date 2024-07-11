@@ -40,4 +40,11 @@ export const mapScreenToProps: Record<
       unfocused: 'User',
     },
   },
+  ResumeScreen: {
+    label: 'Relatórios',
+    icon: {
+      focused: 'PieChart',
+      unfocused: 'PieChart',
+    },
+  },
 };

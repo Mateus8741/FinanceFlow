@@ -3,12 +3,13 @@ import React from 'react';
 
 import { AppTabBar } from './AppTabBar';
 
-import { HomeScreen, ProfileScreen, TransactionScreen } from '@/screens';
+import { HomeScreen, ProfileScreen, ResumeScreen, TransactionScreen } from '@/screens';
 
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
   ProfileScreen: undefined;
   TransactionScreen: undefined;
+  ResumeScreen: undefined;
 };
 
 function renderTabBar(props: BottomTabBarProps) {
@@ -26,6 +27,7 @@ export function AppTabNavigator() {
       tabBar={renderTabBar}>
       <Screen name="HomeScreen" component={HomeScreen} />
       <Screen name="TransactionScreen" component={TransactionScreen} />
+      <Screen name="ResumeScreen" component={ResumeScreen} />
       <Screen name="ProfileScreen" component={ProfileScreen} />
     </Navigator>
   );
