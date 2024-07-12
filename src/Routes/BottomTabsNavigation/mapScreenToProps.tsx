@@ -47,4 +47,11 @@ export const mapScreenToProps: Record<
       unfocused: 'PieChart',
     },
   },
+  AddBillScreen: {
+    label: '',
+    icon: {
+      focused: 'Plus',
+      unfocused: 'Plus',
+    },
+  },
 };
