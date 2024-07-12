@@ -16,7 +16,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
 
   return (
     <View
-      className=" flex-row bg-white px-3 dark:bg-glassDark"
+      className="h-24 flex-row bg-white px-3 dark:bg-glassDark"
       style={[{ paddingBottom: bottom }, useShadowProps()]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -51,6 +51,12 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           });
         };
 
+        const addBill = route.name === 'AddBillScreen';
+
+        const billContainer = 'rounded-xl bg-blue-500 p-1.5 mb-4 absolute -top-6';
+
+        const textBill = colors.white;
+
         return (
           <TouchableOpacity
             key={route.key}
@@ -63,13 +69,16 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
             onPress={onPress}
             onLongPress={onLongPress}
             style={{ flex: 1 }}>
-            <CustonIcons
-              color={isFocused ? colors.blue[500] : colors.blue[300]}
-              icon={isFocused ? (tabItem.icon.focused as any) : (tabItem.icon.unfocused as any)}
-              entering={animation || undefined}
-              size={20}
-            />
-            {isFocused && (
+            <View className={addBill ? billContainer : ''}>
+              <CustonIcons
+                color={isFocused ? (addBill ? textBill : colors.blue[500]) : colors.blue[300]}
+                icon={isFocused ? (tabItem.icon.focused as any) : (tabItem.icon.unfocused as any)}
+                entering={addBill ? undefined : animation || undefined}
+                size={addBill ? 40 : 20}
+              />
+            </View>
+
+            {isFocused && !addBill && (
               <Animated.Text
                 className="text-sm font-bold text-blue-500"
                 entering={animation || undefined}>
