@@ -21,6 +21,7 @@ export function TransactionScreen() {
             payment={item.payment}
           />
         )}
+        className="-mb-7 flex-1 px-1"
         contentContainerStyle={{ paddingTop: 20 }}
         showsVerticalScrollIndicator={false}
       />
