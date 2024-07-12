@@ -17,13 +17,13 @@ const transactionVariants = tv({
   variants: {
     type: {
       income: {
-        iconWrapper: 'bg-green-200 dark:bg-green-800',
-        typeBadge: 'bg-green-500 dark:bg-green-800',
+        iconWrapper: 'bg-green-100 dark:bg-green-900',
+        typeBadge: 'bg-green-500 dark:bg-green-900',
         amountText: 'text-green-500',
       },
       outcome: {
         iconWrapper: 'bg-red-200 dark:bg-red-900',
-        typeBadge: 'bg-red-450 dark:bg-red-400',
+        typeBadge: 'bg-red-450 dark:bg-red-900',
         amountText: 'text-red-500',
       },
     },
@@ -44,7 +44,7 @@ const iconColors = {
     outcome: colors.red[400],
   },
   dark: {
-    income: colors.green[200],
+    income: colors.green[600],
     outcome: colors.red[300],
   },
 };
