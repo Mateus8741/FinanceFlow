@@ -1,19 +1,23 @@
+import { View } from 'react-native';
+
 import { Box, TextInput } from '@/components';
 
 export function AddBillScreen() {
   return (
     <Box>
-      <TextInput placeholder="Insira o nome do banco" />
+      <View className="flex-1 justify-center gap-6">
+        <TextInput label="Banco" placeholder="Insira o nome do banco" />
 
-      <TextInput placeholder="Insira o nome da transação" />
+        <TextInput label="Transação" placeholder="Insira o nome da transação" />
 
-      <TextInput placeholder="Income or Outcome" />
+        <TextInput label="Income/Outcome" placeholder="Income or Outcome" />
 
-      <TextInput placeholder="pix, débito, crédito ou dinheiro" />
+        <TextInput label="Tipo de pagamento" placeholder="pix, débito, crédito ou dinheiro" />
 
-      <TextInput placeholder="Insira o valor" />
+        <TextInput label="Valor" placeholder="Insira o valor" />
 
-      <TextInput placeholder="Insira a data" />
+        <TextInput label="Data" placeholder="Insira a data" />
+      </View>
     </Box>
   );
 }
