@@ -1,3 +1,4 @@
+import { useColorScheme } from 'nativewind';
 import BouncyCheckbox, { BouncyCheckboxProps } from 'react-native-bouncy-checkbox';
 
 import { colors } from '@/theme/colors';
@@ -5,12 +6,16 @@ import { colors } from '@/theme/colors';
 interface CustomCheckboxProps extends BouncyCheckboxProps {}
 
 export function CusstomCheckbox({ ...props }: CustomCheckboxProps) {
+  const { colorScheme } = useColorScheme();
+
+  const borderColor = colorScheme === 'dark' ? colors.white : colors.blue[500];
+
   return (
     <BouncyCheckbox
       size={30}
       iconStyle={{
         borderRadius: 6,
-        borderColor: colors.blue[500],
+        borderColor,
       }}
       iconImageStyle={{
         tintColor: colors.blue[500],
@@ -19,7 +24,7 @@ export function CusstomCheckbox({ ...props }: CustomCheckboxProps) {
       }}
       innerIconStyle={{
         borderRadius: 6,
-        borderColor: colors.white,
+        borderColor,
       }}
       disableText
       {...props}
