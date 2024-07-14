@@ -2,6 +2,7 @@ export * from './BillCard';
 export * from './Box';
 export * from './Card';
 export * from './CustomButton';
+export * from './CustomCheckbox';
 export * from './Header';
 export * from './HeaderData';
 export * from './Icons/CustonIcons';
