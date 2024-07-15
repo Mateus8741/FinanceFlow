@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
-import { Box, CusstomCheckbox, TextInput } from '@/components';
+import { Box, CusstomCheckbox, TextInput, TransitionTypeButton } from '@/components';
 import { colors } from '@/theme/colors';
 
 const data = [
@@ -24,44 +24,67 @@ const data = [
 ];
 
 export function AddBillScreen() {
-  const [selectedTable, setSelectedTable] = useState<any>();
+  const [selectedType, setSelectedType] = useState<'income' | 'outcome' | null>(null);
+  const [selectedPayment, setSelectedPayment] = useState<{ id: number; text: string } | null>(null);
 
   return (
     <Box>
-      <View className="flex-1 justify-center gap-6">
-        <TextInput label="Banco" placeholder="Insira o nome do banco" />
+      <ScrollView
+        className="-mb-7 flex-1 px-1"
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingBottom: 20,
+        }}>
+        <View className="flex-1 justify-center gap-6">
+          <TextInput label="Banco" placeholder="Insira o nome do banco" />
 
-        <TextInput label="Transação" placeholder="Insira o nome da transação" />
+          <TextInput label="Nome da transação" placeholder="Insira o nome da transação" />
 
-        <TextInput label="Income/Outcome" placeholder="Income or Outcome" />
+          <Text className="text-lg font-bold text-black dark:text-white">Tipo de transação</Text>
 
-        <Text className="text-lg font-bold text-black dark:text-white">Tipo de pagamento</Text>
+          <View className="flex-row gap-x-4">
+            <TransitionTypeButton
+              type="income"
+              selected={selectedType === 'income'}
+              onPress={() => setSelectedType('income')}
+            />
+            <TransitionTypeButton
+              type="outcome"
+              selected={selectedType === 'outcome'}
+              onPress={() => setSelectedType('outcome')}
+            />
+          </View>
 
-        <View className="flex-row justify-around">
-          {data.map((item) => (
-            <View key={item.id} className="items-center justify-center">
-              <CusstomCheckbox
-                fillColor={
-                  selectedTable && selectedTable.id === item.id ? colors.white : colors.blue[300]
-                }
-                isChecked={selectedTable === item}
-                onPress={() => {
-                  setSelectedTable(item);
-                  console.log(item);
-                }}
-              />
+          <Text className="text-lg font-bold text-black dark:text-white">Tipo de pagamento</Text>
 
-              <Text className="mt-2 text-base font-bold text-black dark:text-white">
-                {item.text}
-              </Text>
-            </View>
-          ))}
+          <View className="flex-row justify-around">
+            {data.map((item) => (
+              <View key={item.id} className="items-center justify-center">
+                <CusstomCheckbox
+                  fillColor={
+                    selectedPayment && selectedPayment.id === item.id
+                      ? colors.white
+                      : colors.blue[300]
+                  }
+                  isChecked={selectedPayment === item}
+                  onPress={() => {
+                    setSelectedPayment(item);
+                    console.log(item);
+                  }}
+                />
+
+                <Text className="mt-2 text-base font-bold text-black dark:text-white">
+                  {item.text}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+          <TextInput label="Valor" placeholder="Insira o valor" />
         </View>
-
-        <TextInput label="Valor" placeholder="Insira o valor" />
-
-        <TextInput label="Data" placeholder="Insira a data" />
-      </View>
+      </ScrollView>
     </Box>
   );
 }
