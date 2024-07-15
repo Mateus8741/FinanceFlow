@@ -8,7 +8,9 @@ interface CustomCheckboxProps extends BouncyCheckboxProps {}
 export function CusstomCheckbox({ ...props }: CustomCheckboxProps) {
   const { colorScheme } = useColorScheme();
 
-  const borderColor = colorScheme === 'dark' ? colors.white : colors.blue[500];
+  const borderColor = colorScheme === 'dark' ? colors.white : colors.black;
+
+  const unfillColor = colorScheme === 'dark' ? colors.gray[800] : colors.gray[100];
 
   return (
     <BouncyCheckbox
@@ -17,6 +19,7 @@ export function CusstomCheckbox({ ...props }: CustomCheckboxProps) {
         borderRadius: 6,
         borderColor,
       }}
+      unFillColor={unfillColor}
       iconImageStyle={{
         tintColor: colors.blue[500],
         width: 20,
