@@ -12,6 +12,7 @@ export * from './MyCards';
 export * from './PasswordInput';
 export * from './ResemudeCard';
 export * from './TextInput';
+export * from './ThemeSelect';
 export * from './TransactionCard';
 export * from './TransitionTypeButton';
 
