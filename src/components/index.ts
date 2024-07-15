@@ -13,4 +13,5 @@ export * from './PasswordInput';
 export * from './ResemudeCard';
 export * from './TextInput';
 export * from './TransactionCard';
+export * from './TransitionTypeButton';
 
