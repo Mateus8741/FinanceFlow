@@ -11,7 +11,7 @@ import './global.css';
 
 export default function App() {
   const { theme } = useThemeStorage();
-  const { setColorScheme, handleThemeChange } = useThemeChanger();
+  const { setColorScheme } = useThemeChanger();
 
   useEffect(() => {
     if (theme) {
@@ -25,9 +25,6 @@ export default function App() {
         <StatusBar style="auto" animated translucent />
 
         <Routes />
-        {/* <Button title="Change Theme Light" onPress={() => handleThemeChange('light')} />
-        <Button title="Change Theme Dark" onPress={() => handleThemeChange('dark')} />
-        <Button title="Change Theme System" onPress={() => handleThemeChange('system')} /> */}
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );
