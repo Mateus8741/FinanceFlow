@@ -1,21 +1,39 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
+import { useForm } from 'react-hook-form';
 import { ImageBackground, Pressable, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
-import { Box, CustomButton, PasswordInput, TextInput } from '@/components';
+import { Box, CustomButton, FormPasswordInput, FormTextInput } from '@/components';
 import { OrView } from '@/components/OrView';
+import { registerScheema, RegisterScheema } from '@/schemas';
 import { colors } from '@/theme/colors';
 
 export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>) {
+  const { control, handleSubmit } = useForm({
+    resolver: zodResolver(registerScheema),
+
+    defaultValues: {
+      name: '',
+      lastName: '',
+      email: '',
+      birthDate: '',
+      password: '',
+      confirmPassword: '',
+    },
+
+    mode: 'onChange',
+  });
+
   const { colorScheme } = useColorScheme();
 
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
-  function handleRegister() {
-    console.log('Register');
+  function handleRegister(data: RegisterScheema) {
+    console.log(data);
   }
 
   function goToLogin() {
@@ -36,24 +54,31 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
             </Text>
 
             <View className="my-6 gap-y-5">
-              <TextInput placeholder="Nome" />
-              <TextInput placeholder="Sobrenome" />
-              <TextInput placeholder="E-mail" />
-              <TextInput
+              <FormTextInput control={control} name="name" placeholder="Nome" />
+              <FormTextInput control={control} name="lastName" placeholder="Sobrenome" />
+              <FormTextInput control={control} name="email" placeholder="E-mail" />
+              <FormTextInput
+                control={control}
+                name="birthDate"
                 placeholder="Data de nascimento"
                 rightComponent={
                   <MaterialCommunityIcons
                     name="calendar-account-outline"
-                    size={16}
+                    size={24}
                     color={colors.gray[400]}
                     opacity={0.5}
                   />
                 }
               />
-              <PasswordInput placeholder="Senha" />
+              <FormPasswordInput control={control} name="password" placeholder="Senha" />
+              <FormPasswordInput
+                control={control}
+                name="confirmPassword"
+                placeholder="Confirmar senha"
+              />
             </View>
 
-            <CustomButton title="Entrar" onPress={handleRegister} />
+            <CustomButton title="Entrar" onPress={handleSubmit(handleRegister)} />
 
             <OrView />
 
