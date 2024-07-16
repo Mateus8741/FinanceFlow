@@ -3,6 +3,8 @@ export * from './Box';
 export * from './Card';
 export * from './CustomButton';
 export * from './CustomCheckbox';
+export * from './Form/FormPasswordInput';
+export * from './Form/FormTextInput';
 export * from './Header';
 export * from './HeaderData';
 export * from './Icons/CustonIcons';
