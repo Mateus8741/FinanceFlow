@@ -53,7 +53,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
 
         const addBill = route.name === 'AddBillScreen';
 
-        const billContainer = 'rounded-xl bg-blue-500 p-1.5 mb-4 absolute -top-6';
+        const billContainer = 'rounded-xl bg-blue-500 p-1.5 mb-4 absolute top-1.5';
 
         const textBill = colors.white;
 
