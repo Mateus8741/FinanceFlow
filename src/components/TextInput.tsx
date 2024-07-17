@@ -56,7 +56,7 @@ export function TextInput({
       </View>
 
       {errorMessage && (
-        <Text className="font-semiBold text-md text-red-600 text-center font-bold">
+        <Text className="font-semiBold text-start text-sm font-bold text-red-500">
           {errorMessage}
         </Text>
       )}
