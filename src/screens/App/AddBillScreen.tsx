@@ -1,7 +1,16 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { ScrollView, Text, View } from 'react-native';
 
-import { Box, CusstomCheckbox, TextInput, TransitionTypeButton } from '@/components';
+import {
+  Box,
+  CusstomCheckbox,
+  CustomButton,
+  FormTextInput,
+  TransitionTypeButton,
+} from '@/components';
+import { AddBillSchema, addBillSchema } from '@/schemas';
 import { colors } from '@/theme/colors';
 
 const data = [
@@ -24,8 +33,28 @@ const data = [
 ];
 
 export function AddBillScreen() {
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, isDirty, isValid },
+  } = useForm({
+    resolver: zodResolver(addBillSchema),
+
+    defaultValues: {
+      bank: '',
+      transactionName: '',
+      value: '',
+    },
+
+    mode: 'onSubmit',
+  });
+
   const [selectedType, setSelectedType] = useState<'income' | 'outcome' | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<{ id: number; text: string } | null>(null);
+
+  function handleAddBill(data: AddBillSchema) {
+    console.log(data);
+  }
 
   return (
     <Box>
@@ -38,9 +67,19 @@ export function AddBillScreen() {
           paddingBottom: 20,
         }}>
         <View className="flex-1 justify-center gap-6">
-          <TextInput label="Banco" placeholder="Insira o nome do banco" />
+          <FormTextInput
+            control={control}
+            name="bank"
+            label="Banco"
+            placeholder="Insira o nome do banco"
+          />
 
-          <TextInput label="Nome da transação" placeholder="Insira o nome da transação" />
+          <FormTextInput
+            control={control}
+            name="transactionName"
+            label="Nome da transação"
+            placeholder="Insira o nome da transação"
+          />
 
           <Text className="text-lg font-bold text-black dark:text-white">Tipo de transação</Text>
 
@@ -82,9 +121,21 @@ export function AddBillScreen() {
             ))}
           </View>
 
-          <TextInput label="Valor" placeholder="Insira o valor" />
+          <FormTextInput
+            control={control}
+            name="value"
+            label="Valor"
+            placeholder="Insira o valor"
+          />
         </View>
       </ScrollView>
+
+      <CustomButton
+        title="Adicionar"
+        onPress={handleSubmit(handleAddBill)}
+        isLoading={isSubmitting}
+        isDisabled={!selectedType || !selectedPayment || !isDirty || !isValid}
+      />
     </Box>
   );
 }
