@@ -53,13 +53,12 @@ export function TextInput({
             {rightComponent && <View className="mx-4 justify-center">{rightComponent}</View>}
           </View>
         </Pressable>
+        {errorMessage && (
+          <Text className="font-semiBold mt-2 text-start text-sm font-bold text-red-500">
+            {errorMessage}
+          </Text>
+        )}
       </View>
-
-      {errorMessage && (
-        <Text className="font-semiBold text-start text-sm font-bold text-red-500">
-          {errorMessage}
-        </Text>
-      )}
     </>
   );
 }
