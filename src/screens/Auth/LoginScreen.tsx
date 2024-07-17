@@ -1,19 +1,33 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
+import { useForm } from 'react-hook-form';
 import { ImageBackground, Pressable, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
-import { Box, CustomButton, PasswordInput, TextInput } from '@/components';
+import { Box, CustomButton, FormPasswordInput, FormTextInput } from '@/components';
 import { OrView } from '@/components/OrView';
+import { loginScheema, LoginScheema } from '@/schemas';
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
+  const { control, handleSubmit } = useForm({
+    resolver: zodResolver(loginScheema),
+
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+
+    mode: 'onSubmit',
+  });
+
   const { colorScheme } = useColorScheme();
 
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
-  function handleLogin() {
-    console.log('Login');
+  function handleLogin(data: LoginScheema) {
+    console.log(data);
   }
 
   function forgotPassword() {
@@ -38,15 +52,15 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
             </Text>
 
             <View className="mt-6 gap-y-5">
-              <TextInput placeholder="E-mail" />
-              <PasswordInput placeholder="Senha" />
+              <FormTextInput control={control} name="email" placeholder="E-mail" />
+              <FormPasswordInput control={control} name="password" placeholder="Senha" />
             </View>
 
             <Pressable onPress={forgotPassword}>
               <Text className="my-6 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
             </Pressable>
 
-            <CustomButton title="Entrar" onPress={handleLogin} />
+            <CustomButton title="Entrar" onPress={handleSubmit(handleLogin)} />
 
             <OrView />
 
