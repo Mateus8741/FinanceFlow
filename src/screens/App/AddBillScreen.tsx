@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, Text, View } from 'react-native';
 
 import {
@@ -8,10 +8,12 @@ import {
   CusstomCheckbox,
   CustomButton,
   FormTextInput,
+  TextInput,
   TransitionTypeButton,
 } from '@/components';
 import { AddBillSchema, addBillSchema } from '@/schemas';
 import { colors } from '@/theme/colors';
+import { formatCurrencyOnDigiting } from '@/utils';
 
 const data = [
   {
@@ -36,7 +38,8 @@ export function AddBillScreen() {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isSubmitting, isDirty, isValid, isSubmitSuccessful },
+    reset,
   } = useForm({
     resolver: zodResolver(addBillSchema),
 
@@ -46,14 +49,20 @@ export function AddBillScreen() {
       value: '',
     },
 
-    mode: 'onSubmit',
+    mode: 'onChange',
   });
 
   const [selectedType, setSelectedType] = useState<'income' | 'outcome' | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<{ id: number; text: string } | null>(null);
 
   function handleAddBill(data: AddBillSchema) {
-    console.log(data);
+    console.log(data, selectedType, selectedPayment?.text);
+
+    if (isSubmitSuccessful) {
+      reset();
+      setSelectedType(null);
+      setSelectedPayment(null);
+    }
   }
 
   return (
@@ -79,6 +88,21 @@ export function AddBillScreen() {
             name="transactionName"
             label="Nome da transação"
             placeholder="Insira o nome da transação"
+          />
+
+          <Controller
+            control={control}
+            name="value"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                value={`R$ ${value}`}
+                onBlur={onBlur}
+                keyboardType="numeric"
+                onChangeText={(value) => onChange(formatCurrencyOnDigiting(value))}
+                label="Valor"
+                placeholder="Insira o valor"
+              />
+            )}
           />
 
           <Text className="text-lg font-bold text-black dark:text-white">Tipo de transação</Text>
@@ -108,10 +132,7 @@ export function AddBillScreen() {
                       : colors.blue[300]
                   }
                   isChecked={selectedPayment === item}
-                  onPress={() => {
-                    setSelectedPayment(item);
-                    console.log(item);
-                  }}
+                  onPress={() => setSelectedPayment(item)}
                 />
 
                 <Text className="mt-2 text-base font-bold text-black dark:text-white">
@@ -120,13 +141,6 @@ export function AddBillScreen() {
               </View>
             ))}
           </View>
-
-          <FormTextInput
-            control={control}
-            name="value"
-            label="Valor"
-            placeholder="Insira o valor"
-          />
         </View>
       </ScrollView>
 
