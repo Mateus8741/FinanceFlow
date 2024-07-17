@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
 
+import defaultProfile from '@/assets/defaultProfile.jpeg';
 import { Box, TextInput, ThemeSelect } from '@/components';
 import { useThemeChanger } from '@/service';
 
@@ -12,6 +13,10 @@ export function ProfileScreen() {
     setSelectedTheme(theme);
     handleThemeChange(theme);
   };
+
+  const hasImage = true;
+
+  const uri = 'https://avatars.githubusercontent.com/u/39889384?v=4';
 
   return (
     <Box>
@@ -28,12 +33,7 @@ export function ProfileScreen() {
         </Text>
 
         <View className="items-center justify-center rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
-          <Image
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
-            className="h-32 w-32 rounded-full"
-          />
+          <Image source={hasImage ? { uri } : defaultProfile} className="h-32 w-32 rounded-full" />
 
           <Text className="mt-3 text-xl font-bold text-blue-500">Alterar foto</Text>
         </View>

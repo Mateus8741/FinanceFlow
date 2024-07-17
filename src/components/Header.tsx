@@ -3,18 +3,21 @@ import { Image, Text, View } from 'react-native';
 
 import { Icon } from './Icons/CustonIcons';
 
+import defaultProfile from '@/assets/defaultProfile.jpeg';
 import { colors } from '@/theme/colors';
 
 export function Header() {
   const { colorScheme } = useColorScheme();
 
+  const hasImage = false;
+
+  const uri = 'https://avatars.githubusercontent.com/u/39889384?v=4';
+
   return (
     <View className="mb-5 flex-row items-center justify-between border-b border-gray-300 pb-3 dark:border-gray-400">
       <View className="flex-row items-center gap-x-3">
         <Image
-          source={{
-            uri: 'https://avatars.githubusercontent.com/u/47735167?v=4',
-          }}
+          source={hasImage ? { uri } : defaultProfile}
           className="h-14 w-14 rounded-full border border-gray-800 dark:border-gray-100"
         />
 
