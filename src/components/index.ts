@@ -12,6 +12,7 @@ export * from './MoneyCard';
 export * from './MyBills';
 export * from './MyCards';
 export * from './PasswordInput';
+export * from './ProfileMenu';
 export * from './ResemudeCard';
 export * from './TextInput';
 export * from './ThemeSelect';
