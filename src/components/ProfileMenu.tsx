@@ -33,12 +33,12 @@ export function ProfileMenu() {
   }
 
   return (
-    <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
+    <View className="items-cente mt-7 rounded-xl bg-white px-4 pb-6 shadow-sm dark:bg-glassDark">
       {dataMenuProfile.map((item, i) => (
         <View key={item.group}>
-          <Text className="text-center text-2xl font-bold text-blue-500">{item.group}</Text>
+          <Text className="mt-6 text-start text-3xl font-bold text-blue-500">{item.group}</Text>
 
-          <View className="mt-4 gap-3">
+          <View className="gap-3">
             {item.items.map((subitem, j) => (
               <Pressable
                 key={subitem.name}
@@ -57,9 +57,9 @@ export function ProfileMenu() {
         </View>
       ))}
 
-      <Text className="my-4 text-center text-2xl font-bold text-blue-500">Tema</Text>
+      <Text className="my-6 text-start text-3xl font-bold text-blue-500">Tema</Text>
 
-      <View className="gap-y-4">
+      <View className="gap-y-4 ">
         <ThemeSelect
           label="Cores do sistema"
           selectedTheme={selectedTheme}
