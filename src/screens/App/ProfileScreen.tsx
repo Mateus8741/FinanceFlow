@@ -27,8 +27,6 @@ export function ProfileScreen({ navigation }: AppTabScreenProps<'ProfileScreen'>
         <View className="mb-4 flex-row items-center justify-between">
           <View className="h-[35px] w-[35px]" />
 
-          <Text className="text-center text-xl font-bold text-blue-500">Perfil</Text>
-
           <Pressable
             className="items-center justify-center rounded-xl bg-red-200 p-2 dark:bg-red-900"
             onPress={handleLogOut}>
