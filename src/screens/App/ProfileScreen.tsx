@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 
 import defaultProfile from '@/assets/defaultProfile.jpeg';
-import { Box, TextInput, ThemeSelect } from '@/components';
+import { Box, Icon, TextInput, ThemeSelect } from '@/components';
 import { useThemeChanger } from '@/service';
+import { colors } from '@/theme/colors';
 
 export function ProfileScreen() {
   const { handleThemeChange } = useThemeChanger();
@@ -13,6 +14,14 @@ export function ProfileScreen() {
     setSelectedTheme(theme);
     handleThemeChange(theme);
   };
+
+  function handleEditProfile() {
+    console.log('edit profile');
+  }
+
+  function handleLogOut() {
+    console.log('log out');
+  }
 
   const hasImage = true;
 
@@ -28,9 +37,17 @@ export function ProfileScreen() {
           flexGrow: 1,
           paddingBottom: 20,
         }}>
-        <Text className="mb-4 text-center text-xl font-bold text-black dark:text-white">
-          Perfil
-        </Text>
+        <View className="mb-4 flex-row items-center justify-between">
+          <View className="h-[35px] w-[35px]" />
+
+          <Text className="text-center text-xl font-bold text-blue-500">Perfil</Text>
+
+          <Pressable
+            className="items-center justify-center rounded-xl bg-red-200 p-2 dark:bg-red-900"
+            onPress={handleLogOut}>
+            <Icon icon="LogOut" size={22} color={colors.red[500]} />
+          </Pressable>
+        </View>
 
         <View className="items-center justify-center rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
           <Image source={hasImage ? { uri } : defaultProfile} className="h-32 w-32 rounded-full" />
@@ -39,7 +56,15 @@ export function ProfileScreen() {
         </View>
 
         <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
-          <Text className="mb-4 text-2xl font-bold text-blue-500">Dados pessoais</Text>
+          <View className="mb-4 flex-row items-center justify-between">
+            <Text className="text-2xl font-bold text-blue-500">Dados pessoais</Text>
+
+            <Pressable
+              className="items-center justify-center rounded-xl bg-blue-200 p-2 dark:bg-blue-700"
+              onPress={handleEditProfile}>
+              <Icon icon="Pencil" size={22} color={colors.blue[500]} />
+            </Pressable>
+          </View>
 
           <View className="gap-4">
             <TextInput placeholder="Nome" value="Mateus Tavares" editable={false} />
@@ -48,14 +73,14 @@ export function ProfileScreen() {
           </View>
         </View>
 
-        <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
+        {/* <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
           <Text className="mb-4 text-2xl font-bold text-blue-500">Senha</Text>
 
           <TextInput placeholder="Senha" value="*****************" editable={false} />
-        </View>
+        </View> */}
 
         <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
-          <Text className="mb-4 text-2xl font-bold text-blue-500">Dados pessoais</Text>
+          <Text className="mb-4 text-2xl font-bold text-blue-500">Escolher tema</Text>
 
           <View className="gap-y-4">
             <ThemeSelect
