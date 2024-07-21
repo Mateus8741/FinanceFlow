@@ -42,16 +42,16 @@ export function ProfileScreen() {
           <Text className="mb-4 text-2xl font-bold text-blue-500">Dados pessoais</Text>
 
           <View className="gap-4">
-            <TextInput placeholder="Nome" value="Mateus Tavares" />
-            <TextInput placeholder="Data" value="01/01/2000" />
-            <TextInput placeholder="E-mail" value="teste@t.com" />
+            <TextInput placeholder="Nome" value="Mateus Tavares" editable={false} />
+            <TextInput placeholder="Data" value="01/01/2000" editable={false} />
+            <TextInput placeholder="E-mail" value="teste@t.com" editable={false} />
           </View>
         </View>
 
         <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
           <Text className="mb-4 text-2xl font-bold text-blue-500">Senha</Text>
 
-          <TextInput placeholder="Senha" value="*****************" />
+          <TextInput placeholder="Senha" value="*****************" editable={false} />
         </View>
 
         <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
