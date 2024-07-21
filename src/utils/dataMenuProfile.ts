@@ -10,10 +10,10 @@ export const dataMenuProfile = [
       //     name: 'Configurações',
       //     icon: 'Settings',
       //   },
-      {
-        name: 'Fale conosco',
-        icon: 'MessageCircle',
-      },
+      // {
+      //   name: 'Fale conosco',
+      //   icon: 'MessageCircle',
+      // },
     ],
   },
   //   {
