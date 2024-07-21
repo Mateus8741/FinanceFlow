@@ -4,8 +4,11 @@ import React from 'react';
 
 import { AppTabBottomTabParamList, AppTabNavigator } from './BottomTabsNavigation/AppTabNavigator';
 
+import { EditProfileScreen } from '@/screens';
+
 export type AppStackParamList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
+  EditProfileScreen: undefined;
 };
 
 export function AppStack() {
@@ -19,6 +22,14 @@ export function AppStack() {
         fullScreenGestureEnabled: true,
       }}>
       <Screen name="AppTabNavigator" component={AppTabNavigator} />
+      <Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
+        options={{
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
+        }}
+      />
     </Navigator>
   );
 }
