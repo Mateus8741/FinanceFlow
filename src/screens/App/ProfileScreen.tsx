@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 
+import { AppTabScreenProps } from '@/Routes';
 import defaultProfile from '@/assets/defaultProfile.jpeg';
 import { Box, Icon, TextInput, ThemeSelect } from '@/components';
 import { useThemeChanger } from '@/service';
 import { colors } from '@/theme/colors';
 
-export function ProfileScreen() {
+export function ProfileScreen({ navigation }: AppTabScreenProps<'ProfileScreen'>) {
   const { handleThemeChange } = useThemeChanger();
   const [selectedTheme, setSelectedTheme] = useState('system');
 
@@ -16,7 +17,7 @@ export function ProfileScreen() {
   };
 
   function handleEditProfile() {
-    console.log('edit profile');
+    navigation.navigate('EditProfileScreen');
   }
 
   function handleLogOut() {
