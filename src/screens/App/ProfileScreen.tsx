@@ -1,13 +1,15 @@
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 
-import { AppTabScreenProps } from '@/Routes';
+import { useLogOutUser } from '@/api';
 import defaultProfile from '@/assets/defaultProfile.jpeg';
 import { Box, Icon, ProfileMenu } from '@/components';
 import { colors } from '@/theme/colors';
 
-export function ProfileScreen({ navigation }: AppTabScreenProps<'ProfileScreen'>) {
+export function ProfileScreen() {
+  const { logout } = useLogOutUser();
+
   function handleLogOut() {
-    console.log('log out');
+    logout();
   }
 
   const hasImage = true;
