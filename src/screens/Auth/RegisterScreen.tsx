@@ -44,6 +44,7 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
   function handleRegister({ birthDate, email, lastName, name, password }: RegisterScheema) {
     register({ birthDate, email, lastName, name, password });
     reset();
+    navigation.navigate('LoginScreen');
   }
 
   function goToLogin() {
@@ -105,7 +106,7 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
             </View>
 
             <CustomButton
-              title="Entrar"
+              title="Cadastrar"
               onPress={handleSubmit(handleRegister)}
               isDisabled={!isDirty || !isValid}
               isLoading={isPending}
