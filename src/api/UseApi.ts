@@ -31,10 +31,15 @@ async function Register({ email, password, birthDate, name, lastName }: Register
   });
 }
 
+async function ResetPassword(email: string) {
+  return await supabase.auth.resetPasswordForEmail(email);
+}
+
 export function UseApi() {
   return {
     Login,
     Logout,
     Register,
+    ResetPassword,
   };
 }
