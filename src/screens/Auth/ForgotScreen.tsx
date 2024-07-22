@@ -1,17 +1,37 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
+import { useForm } from 'react-hook-form';
 import { ImageBackground, Text, View } from 'react-native';
 
+import { useResetPassword } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
-import { Box, CustomButton, TextInput } from '@/components';
+import { Box, CustomButton, FormTextInput } from '@/components';
+import { ForgotPasswordSchema, forgotPasswordSchema } from '@/schemas';
 
 export function ForgotScreen() {
+  const { reset, isPending } = useResetPassword();
+
   const { colorScheme } = useColorScheme();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, isDirty },
+  } = useForm({
+    resolver: zodResolver(forgotPasswordSchema),
+
+    defaultValues: {
+      email: '',
+    },
+
+    mode: 'onChange',
+  });
 
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
-  function handleForgotPassword() {
-    console.log('Forgot Password');
+  function handleForgotPassword({ email }: ForgotPasswordSchema) {
+    reset({ email });
   }
 
   return (
@@ -28,10 +48,15 @@ export function ForgotScreen() {
             </Text>
 
             <View className="my-6 gap-y-5">
-              <TextInput placeholder="E-mail" />
+              <FormTextInput control={control} name="email" placeholder="E-mail" />
             </View>
 
-            <CustomButton title="Recuperar senha" onPress={handleForgotPassword} />
+            <CustomButton
+              title="Recuperar senha"
+              onPress={handleSubmit(handleForgotPassword)}
+              isDisabled={!isValid || !isDirty}
+              isLoading={isPending}
+            />
           </ImageBackground>
         </View>
       </View>
