@@ -4,9 +4,11 @@ import { Image, Text, View } from 'react-native';
 import { Icon } from './Icons/CustonIcons';
 
 import defaultProfile from '@/assets/defaultProfile.jpeg';
+import { useUserStorage } from '@/contexts';
 import { colors } from '@/theme/colors';
 
 export function Header() {
+  const { user } = useUserStorage();
   const { colorScheme } = useColorScheme();
 
   const hasImage = false;
@@ -23,7 +25,9 @@ export function Header() {
 
         <View>
           <Text className="text-base text-black dark:text-white">Olá,</Text>
-          <Text className="text-lg font-bold text-black dark:text-white">Matt</Text>
+          <Text className="text-lg font-bold text-black dark:text-white">
+            {user?.user_metadata.first_name}
+          </Text>
         </View>
       </View>
 
