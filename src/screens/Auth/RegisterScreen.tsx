@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
 import { Controller, useForm } from 'react-hook-form';
-import { ImageBackground, Pressable, Text, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
 import { useRegisterUser } from '@/api';
@@ -111,16 +111,7 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
               isLoading={isPending}
             />
 
-            <OrView />
-
-            <View className="flex-row items-center justify-center gap-x-1">
-              <Text className="text-center text-gray-400 dark:text-gray-200">
-                Já tem uma conta?
-              </Text>
-              <Pressable onPress={goToLogin}>
-                <Text className="text-center font-bold text-blue-500">Fazer login</Text>
-              </Pressable>
-            </View>
+            <OrView title="Já tem uma conta?" subTitle="Fazer login" onPress={goToLogin} />
           </ImageBackground>
         </View>
       </View>
