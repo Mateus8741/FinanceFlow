@@ -11,7 +11,11 @@ import { OrView } from '@/components/OrView';
 import { loginScheema, LoginScheema } from '@/schemas';
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useForm({
     resolver: zodResolver(loginScheema),
 
     defaultValues: {
@@ -60,18 +64,17 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
               <Text className="my-6 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
             </Pressable>
 
-            <CustomButton title="Entrar" onPress={handleSubmit(handleLogin)} />
+            <CustomButton
+              title="Entrar"
+              onPress={handleSubmit(handleLogin)}
+              isDisabled={!isDirty || !isValid}
+            />
 
-            <OrView />
-
-            <View className="flex-row items-center justify-center gap-x-1">
-              <Text className="text-center text-gray-400 dark:text-gray-200">
-                Não tem uma conta?
-              </Text>
-              <Pressable onPress={goToRegister}>
-                <Text className="text-center font-bold text-blue-500">Cadastre-se</Text>
-              </Pressable>
-            </View>
+            <OrView
+              title="Ainda não tem uma conta?"
+              subTitle="Cadastre-se"
+              onPress={goToRegister}
+            />
           </ImageBackground>
         </View>
       </View>
