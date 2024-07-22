@@ -7,11 +7,14 @@ import { Routes } from '@/Routes/Routes';
 import { useThemeStorage } from '@/contexts/useTheme';
 import { useThemeChanger } from '@/service';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './global.css';
 
 export default function App() {
   const { theme } = useThemeStorage();
   const { setColorScheme } = useThemeChanger();
+
+  const queryClient = new QueryClient()
 
   useEffect(() => {
     if (theme) {
@@ -20,6 +23,7 @@ export default function App() {
   }, [theme]);
 
   return (
+    <QueryClientProvider client={queryClient}>
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar style="auto" animated translucent />
@@ -27,5 +31,6 @@ export default function App() {
         <Routes />
       </GestureHandlerRootView>
     </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
