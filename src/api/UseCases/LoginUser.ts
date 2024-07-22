@@ -15,7 +15,6 @@ export function useLoginUser() {
       console.log('loging user...');
     },
     onSuccess(data) {
-      console.log('user logged', data.data.user?.id);
       setUser({
         session: {
           access_token: data.data.session?.access_token || '',
