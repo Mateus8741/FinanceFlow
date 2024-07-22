@@ -39,6 +39,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
 
   function forgotPassword() {
     navigation.navigate('ForgotScreen');
+    //FIXME: Implementar a funcionalidade de esqueci a senha
   }
 
   function goToRegister() {
