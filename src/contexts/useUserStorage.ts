@@ -5,9 +5,8 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { UserSchema } from '@/schemas';
 
 type UserProps = {
-  user: UserSchema;
-  setUser: (user: UserSchema) => void;
-  removeUser: () => void;
+  user: UserSchema | null;
+  setUser: (user: UserSchema | null) => void;
 };
 
 const useUserStore = create<UserProps>()(
@@ -26,21 +25,6 @@ const useUserStore = create<UserProps>()(
         },
       },
       setUser: (user) => set({ user }),
-      removeUser: () =>
-        set({
-          user: {
-            session: {
-              access_token: '',
-              refresh_token: '',
-            },
-            user_metadata: {
-              birth_date: '',
-              email: '',
-              first_name: '',
-              last_name: '',
-            },
-          },
-        }),
     }),
     {
       name: 'user-storage',
@@ -50,7 +34,7 @@ const useUserStore = create<UserProps>()(
 );
 
 export function useUserStorage() {
-  const { user, setUser, removeUser } = useUserStore();
+  const { user, setUser } = useUserStore();
 
-  return { user, setUser, removeUser };
+  return { user, setUser };
 }
