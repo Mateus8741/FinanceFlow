@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { ImageBackground, Pressable, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
+import { useRegisterUser } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormPasswordInput, FormTextInput, TextInput } from '@/components';
@@ -14,7 +15,12 @@ import { colors } from '@/theme/colors';
 import { formatBirthDate } from '@/utils';
 
 export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>) {
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid },
+    reset,
+  } = useForm({
     resolver: zodResolver(registerScheema),
 
     defaultValues: {
@@ -31,10 +37,13 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
 
   const { colorScheme } = useColorScheme();
 
+  const { register, isPending } = useRegisterUser();
+
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
-  function handleRegister(data: RegisterScheema) {
-    console.log(data);
+  function handleRegister({ birthDate, email, lastName, name, password }: RegisterScheema) {
+    register({ birthDate, email, lastName, name, password });
+    reset();
   }
 
   function goToLogin() {
@@ -95,7 +104,12 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
               />
             </View>
 
-            <CustomButton title="Entrar" onPress={handleSubmit(handleRegister)} />
+            <CustomButton
+              title="Entrar"
+              onPress={handleSubmit(handleRegister)}
+              isDisabled={!isDirty || !isValid}
+              isLoading={isPending}
+            />
 
             <OrView />
 
