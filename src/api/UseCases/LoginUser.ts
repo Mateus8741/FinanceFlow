@@ -15,12 +15,14 @@ export function useLoginUser() {
       console.log('loging user...');
     },
     onSuccess(data) {
+      console.log('user logged', data.data.user?.id);
       setUser({
         session: {
           access_token: data.data.session?.access_token || '',
           refresh_token: data.data.session?.refresh_token || '',
         },
         user_metadata: {
+          id: data.data.user?.id ?? '',
           birth_date: data.data.user?.user_metadata.birth_date,
           email: data.data.user?.user_metadata.email,
           first_name: data.data.user?.user_metadata.first_name,

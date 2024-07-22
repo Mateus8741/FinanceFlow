@@ -4,6 +4,7 @@ export interface UserSchema {
 }
 
 interface Usermetadata {
+  id: string;
   birth_date: string;
   email: string;
   first_name: string;
