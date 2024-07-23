@@ -6,7 +6,7 @@ import { supabase } from '@/utils/supabase';
 export function useGetTransactions() {
   const { user } = useUserStorage();
 
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['all-transactions'],
     queryFn: async () => {
       const response = await supabase
@@ -25,5 +25,6 @@ export function useGetTransactions() {
     transaction: data,
     error,
     isLoading,
+    refetch,
   };
 }

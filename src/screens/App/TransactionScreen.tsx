@@ -1,11 +1,11 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 
 import { useGetTransactions } from '@/api';
 import { Box, HeaderData, TransactionCard } from '@/components';
 
 export function TransactionScreen() {
-  const { transaction, isLoading } = useGetTransactions();
+  const { transaction, isLoading, refetch } = useGetTransactions();
 
   return (
     <Box>
@@ -28,6 +28,7 @@ export function TransactionScreen() {
         contentContainerStyle={{ paddingTop: 20 }}
         showsVerticalScrollIndicator={false}
         refreshing={isLoading}
+        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
       />
     </Box>
   );
