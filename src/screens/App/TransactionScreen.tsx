@@ -32,30 +32,3 @@ export function TransactionScreen() {
     </Box>
   );
 }
-
-const transactions = [
-  {
-    type: 'income',
-    billingTitle: 'Inter',
-    name: 'Compra sofá',
-    date: '12/09/2021',
-    value: 1000,
-    payment: 'cartão de crédito',
-  },
-  {
-    type: 'outcome',
-    billingTitle: 'Inter',
-    name: 'Compra sofá',
-    date: '12/09/2021',
-    value: 1000,
-    payment: 'pix',
-  },
-  {
-    type: 'income',
-    billingTitle: 'Bradesco',
-    name: 'Compra sofá',
-    date: '12/09/2021',
-    value: 1000,
-    payment: 'cartão de débito',
-  },
-];
