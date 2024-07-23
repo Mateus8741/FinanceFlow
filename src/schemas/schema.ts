@@ -41,7 +41,9 @@ export type Database = {
           created_at: string
           id: string
           payment_type: string | null
-          transacion_type: string | null
+          transacion_type:
+            | Database["public"]["Enums"]["transaction_type_enum"]
+            | null
           transaction_name: string | null
           value: number | null
         }
@@ -51,7 +53,9 @@ export type Database = {
           created_at?: string
           id?: string
           payment_type?: string | null
-          transacion_type?: string | null
+          transacion_type?:
+            | Database["public"]["Enums"]["transaction_type_enum"]
+            | null
           transaction_name?: string | null
           value?: number | null
         }
@@ -61,7 +65,9 @@ export type Database = {
           created_at?: string
           id?: string
           payment_type?: string | null
-          transacion_type?: string | null
+          transacion_type?:
+            | Database["public"]["Enums"]["transaction_type_enum"]
+            | null
           transaction_name?: string | null
           value?: number | null
         }
@@ -83,7 +89,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      transaction_type_enum: "income" | "outcome"
     }
     CompositeTypes: {
       [_ in never]: never
