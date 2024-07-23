@@ -1,8 +1,11 @@
 import { ScrollView, View } from 'react-native';
 
 import { Box, Header, MoneyCard, MyBills, MyCards } from '@/components';
+import { useTransactionCalc } from '@/service';
 
 export function HomeScreen() {
+  const { income, total, outcome } = useTransactionCalc();
+
   return (
     <Box>
       <Header />
@@ -12,11 +15,11 @@ export function HomeScreen() {
         showsVerticalScrollIndicator={false}
         bounces={false}
         contentContainerStyle={{ paddingBottom: 20 }}>
-        <MoneyCard cardType="total" value={1000} />
+        <MoneyCard cardType="total" value={total!} />
 
-        <View className="mt-3 flex-row justify-between">
-          <MoneyCard cardType="income" value={1000} />
-          <MoneyCard cardType="outcome" value={1000} />
+        <View className="mt-3 flex-row gap-4">
+          <MoneyCard cardType="income" value={income!} />
+          <MoneyCard cardType="outcome" value={outcome!} />
         </View>
 
         <MyCards />
