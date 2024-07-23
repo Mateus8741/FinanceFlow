@@ -6,3 +6,8 @@ export function formatCurrencyOnDigiting(value: string) {
   });
   return formattedValue;
 }
+
+export function parseCurrency(value: string) {
+  const cleanValue = value.replace(/[^\d,]/g, '').replace(',', '.');
+  return Number(cleanValue);
+}

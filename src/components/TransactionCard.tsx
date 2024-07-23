@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useColorScheme } from 'nativewind';
 import { Text, View } from 'react-native';
 import { tv } from 'tailwind-variants';
@@ -5,6 +6,7 @@ import { tv } from 'tailwind-variants';
 import { Icon } from './Icons/CustonIcons';
 
 import { colors } from '@/theme/colors';
+import { FormatCurrency } from '@/utils';
 
 const transactionVariants = tv({
   slots: {
@@ -74,6 +76,8 @@ export function TransactionCard({
   const iconColor = colorScheme ? iconColors[colorScheme][type] : '';
   const iconName = iconVariants[type];
 
+  const formattedDate = format(new Date(date), 'dd/MM/yyyy');
+
   return (
     <View className="mb-3 rounded-xl bg-white p-3 shadow-sm dark:bg-glassDark">
       <View className="mb-5 flex-row items-center gap-x-1">
@@ -101,13 +105,13 @@ export function TransactionCard({
 
             <Text className={amountText()}>
               {type === 'outcome' ? '- ' : ''}
-              R$ {value}
+              {FormatCurrency(value)}
             </Text>
           </View>
 
           <View className="flex-row items-center justify-between">
             <Text className="text-md text-gray-400">{payment}</Text>
-            <Text className="text-md text-gray-400">{date}</Text>
+            <Text className="text-md text-gray-400">{formattedDate}</Text>
           </View>
         </View>
       </View>

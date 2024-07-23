@@ -1,6 +1,7 @@
 export * from './UseApi';
-export * from './UseCases/CreateUser';
-export * from './UseCases/LoginUser';
-export * from './UseCases/ResetPassword';
-export * from './UseCases/SignOutUser';
+export * from './UseAuthCases/CreateUser';
+export * from './UseAuthCases/LoginUser';
+export * from './UseAuthCases/ResetPassword';
+export * from './UseAuthCases/SignOutUser';
 
+export * from './UseAppCases/GetTransactions';

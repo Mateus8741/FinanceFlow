@@ -14,7 +14,7 @@ import {
 import { useUserStorage } from '@/contexts';
 import { AddBillSchema, addBillSchema } from '@/schemas';
 import { colors } from '@/theme/colors';
-import { formatCurrencyOnDigiting } from '@/utils';
+import { formatCurrencyOnDigiting, parseCurrency } from '@/utils';
 import { supabase } from '@/utils/supabase';
 
 const data = [
@@ -70,7 +70,7 @@ export function AddBillScreen() {
       bill_id: user?.user_metadata.id || '',
       bank_name: datas.bank,
       transaction_name: datas.transactionName,
-      value: Number(datas.value),
+      value: parseCurrency(datas.value),
       transacion_type: selectedType,
       payment_type: selectedPayment?.text,
     });
