@@ -1,44 +1,3 @@
-// import { useColorScheme } from 'nativewind';
-// import { Text, View } from 'react-native';
-
-// import { Icon } from './Icons/CustonIcons';
-
-// import { colors } from '@/theme/colors';
-
-// interface MoneyCardProps {
-//   cardType: 'total' | 'income' | 'outcome';
-//   value: number;
-// }
-
-// export function MoneyCard() {
-//   const { colorScheme } = useColorScheme();
-
-//   const color = colorScheme === 'dark' ? colors.gray.bgLight : colors.gray.bg;
-
-//   // PiggyBank
-//   // DollarSign
-//   // CircleCheckBig
-
-//   return (
-//     <View className="w-full rounded-3xl bg-white p-5 shadow-sm dark:bg-glassDark dark:shadow-glassLight">
-//       <View className="flex-row items-center justify-between">
-//         <View className="flex-row gap-x-3">
-//           <View className="items-center justify-center rounded-2xl bg-green-500 px-3 dark:bg-green-100">
-//             <Icon icon="CircleCheckBig" size={24} color={colors.green[800]} />
-//           </View>
-
-//           <View>
-//             <Text className="text-sm text-gray-500 dark:text-gray-400">Saldo total</Text>
-//             <Text className="text-lg font-bold text-black dark:text-white">R$ 1.000,00</Text>
-//           </View>
-//         </View>
-
-//         {/* <Icon icon="Eye" size={24} color={color} /> */}
-//       </View>
-//     </View>
-//   );
-// }
-
 import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
@@ -51,7 +10,7 @@ import { colors } from '@/theme/colors';
 import { FormatCurrency } from '@/utils';
 
 const iconStyles = tv({
-  base: 'items-center justify-center rounded-2xl px-3',
+  base: 'items-center justify-center rounded-xl px-3',
   variants: {
     cardType: {
       income: 'bg-green-100 dark:bg-green-900',
@@ -95,7 +54,14 @@ export function MoneyCard({ cardType = 'total', value }: MoneyCardProps) {
   const { colorScheme } = useColorScheme();
   const { setShow, show } = useShowMoneyStorage();
 
-  const formatedValue = FormatCurrency(value);
+  function formatValueWithEllipsis(value: string, maxLength: number) {
+    return value.length > maxLength ? `${value.substring(0, maxLength)}...` : value;
+  }
+
+  const formatedValue =
+    cardType !== 'total'
+      ? formatValueWithEllipsis(FormatCurrency(value), 10)
+      : FormatCurrency(value);
 
   const iconColor = colorScheme && cardType ? textColors[colorScheme][cardType] : '';
 
@@ -104,16 +70,16 @@ export function MoneyCard({ cardType = 'total', value }: MoneyCardProps) {
   const iconName = iconVariants[cardType];
 
   return (
-    <View className="rounded-3xl bg-white p-3 shadow-sm dark:bg-glassDark">
+    <View className="flex-1 rounded-2xl bg-white px-2 py-2.5 shadow-sm dark:bg-glassDark">
       <View className="flex-row items-center justify-between">
-        <View className="flex-row gap-x-3">
+        <View className="flex-row gap-x-2">
           <View className={iconStyles({ cardType })}>
             <Icon icon={iconName as any} size={24} color={iconColor} />
           </View>
 
           <View>
             <Text className="text-sm text-gray-500 dark:text-gray-400">{title[cardType]}</Text>
-            <Text className="text-lg font-bold text-black dark:text-white">
+            <Text className="text-ellipsis text-lg font-bold text-black dark:text-white">
               {show && cardType === 'total' ? 'R$ ********' : formatedValue}
             </Text>
           </View>
