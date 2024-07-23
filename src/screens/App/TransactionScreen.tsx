@@ -1,3 +1,4 @@
+import { useFocusEffect } from '@react-navigation/native';
 import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 
@@ -6,6 +7,10 @@ import { Box, HeaderData, TransactionCard } from '@/components';
 
 export function TransactionScreen() {
   const { transaction, isLoading, refetch } = useGetTransactions();
+
+  useFocusEffect(() => {
+    refetch();
+  });
 
   return (
     <Box>
