@@ -13,7 +13,7 @@ export * from './MyBills';
 export * from './MyCards';
 export * from './PasswordInput';
 export * from './ProfileMenu';
-export * from './ResemudeCard';
+export * from './ResumeCard';
 export * from './TextInput';
 export * from './ThemeSelect';
 export * from './TransactionCard';
