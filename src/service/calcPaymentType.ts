@@ -6,26 +6,48 @@ function PaymentTotals() {
   const { transaction, refetch } = useGetTransactions();
 
   const totals = useMemo(() => {
-    const initialTotals = { debit: 0, credit: 0, cash: 0, pix: 0 };
+    const initialTotals = {
+      income: { debit: 0, credit: 0, cash: 0, pix: 0 },
+      outcome: { debit: 0, credit: 0, cash: 0, pix: 0 },
+    };
 
     return (
       transaction?.reduce((acc, item) => {
         if (item.value !== null) {
-          switch (item.payment_type) {
-            case 'Débito':
-              acc.debit += item.value;
-              break;
-            case 'Crédito':
-              acc.credit += item.value;
-              break;
-            case 'Dinheiro':
-              acc.cash += item.value;
-              break;
-            case 'Pix':
-              acc.pix += item.value;
-              break;
-            default:
-              break;
+          if (item.transacion_type === 'income') {
+            switch (item.payment_type) {
+              case 'Débito':
+                acc.income.debit += item.value;
+                break;
+              case 'Crédito':
+                acc.income.credit += item.value;
+                break;
+              case 'Dinheiro':
+                acc.income.cash += item.value;
+                break;
+              case 'Pix':
+                acc.income.pix += item.value;
+                break;
+              default:
+                break;
+            }
+          } else if (item.transacion_type === 'outcome') {
+            switch (item.payment_type) {
+              case 'Débito':
+                acc.outcome.debit += item.value;
+                break;
+              case 'Crédito':
+                acc.outcome.credit += item.value;
+                break;
+              case 'Dinheiro':
+                acc.outcome.cash += item.value;
+                break;
+              case 'Pix':
+                acc.outcome.pix += item.value;
+                break;
+              default:
+                break;
+            }
           }
         }
         return acc;
@@ -40,13 +62,11 @@ function PaymentTotals() {
 }
 
 export function usePaymentTotals() {
-  const { cash, credit, debit, pix, refetch } = PaymentTotals();
+  const { income, outcome, refetch } = PaymentTotals();
 
   return {
-    cash,
-    credit,
-    debit,
-    pix,
+    income,
+    outcome,
     refetch,
   };
 }
