@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useGetTransactions } from '@/api';
 
 function PaymentTotals() {
-  const { transaction } = useGetTransactions();
+  const { transaction, refetch } = useGetTransactions();
 
   const totals = useMemo(() => {
     const initialTotals = { debit: 0, credit: 0, cash: 0, pix: 0 };
@@ -33,16 +33,20 @@ function PaymentTotals() {
     );
   }, [transaction]);
 
-  return totals;
+  return {
+    ...totals,
+    refetch,
+  };
 }
 
 export function usePaymentTotals() {
-  const { cash, credit, debit, pix } = PaymentTotals();
+  const { cash, credit, debit, pix, refetch } = PaymentTotals();
 
   return {
     cash,
     credit,
     debit,
     pix,
+    refetch,
   };
 }
