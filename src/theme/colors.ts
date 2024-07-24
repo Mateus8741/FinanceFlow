@@ -6,6 +6,7 @@ export const colors = {
   glassDark: '#0D0D0D',
 
   orange: '#fe5816',
+  yellow: '#FEA968',
 
   gray: {
     50: '#E3E7EA',
@@ -29,6 +30,7 @@ export const colors = {
     300: '#a9c6f7',
     400: '#4591ce',
     500: '#3c7eec',
+    550: '#538CEE',
     600: '#1D61E7',
     700: '#02213a',
   },
@@ -45,6 +47,7 @@ export const colors = {
   red: {
     200: '#fee5e6',
     300: '#d05b63',
+    350: '#EB566F',
     400: '#e83f5b',
     450: '#FF6C6C',
     500: '#ff3939',
