@@ -1,15 +1,10 @@
-import { useLayoutEffect } from 'react';
 import { Text, View } from 'react-native';
 
 import { Box, HeaderData, ResumeCard } from '@/components';
 import { usePaymentTotals } from '@/service';
 
 export function ResumeScreen() {
-  const { income, outcome, refetch } = usePaymentTotals();
-
-  useLayoutEffect(() => {
-    refetch();
-  }, [refetch]);
+  const { income, outcome } = usePaymentTotals();
 
   return (
     <Box>
