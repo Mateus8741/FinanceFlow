@@ -1,10 +1,15 @@
+import { useLayoutEffect } from 'react';
 import { FlatList } from 'react-native';
 
 import { Box, HeaderData, ResumeCard } from '@/components';
 import { usePaymentTotals } from '@/service';
 
 export function ResumeScreen() {
-  const { cash, credit, debit, pix } = usePaymentTotals();
+  const { cash, credit, debit, pix, refetch } = usePaymentTotals();
+
+  useLayoutEffect(() => {
+    refetch();
+  });
 
   return (
     <Box>
