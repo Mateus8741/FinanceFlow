@@ -35,11 +35,32 @@ async function ResetPassword(email: string) {
   return await supabase.auth.resetPasswordForEmail(email);
 }
 
+export interface AddBillPropsApi {
+  bill_id: string;
+  bank_name: string;
+  transaction_name: string;
+  value: number;
+  transacion_type: 'income' | 'outcome' | null;
+  payment_type: string;
+}
+
+async function AddBill(data: AddBillPropsApi) {
+  return await supabase.from('Bills').insert({
+    bill_id: data.bill_id,
+    bank_name: data.bank_name,
+    transaction_name: data.transaction_name,
+    value: data.value,
+    transacion_type: data.transacion_type,
+    payment_type: data.payment_type,
+  });
+}
+
 export function UseApi() {
   return {
     Login,
     Logout,
     Register,
     ResetPassword,
+    AddBill,
   };
 }
