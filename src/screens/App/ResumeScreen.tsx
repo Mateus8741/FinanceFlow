@@ -10,22 +10,24 @@ export function ResumeScreen() {
     <Box>
       <HeaderData title="Relatório" subtitle="detalhado" />
 
-      <View className="mt-2">
-        <Text className="mb-2 text-lg font-bold text-green-800">Resumo de entrada</Text>
+      <View className="flex-row gap-x-4">
+        <View className="flex-1">
+          <Text className="mb-2 text-lg font-bold text-green-500">Entrada</Text>
 
-        <ResumeCard type="Pix" value={income.pix} />
-        <ResumeCard type="Crédito" value={income.credit} />
-        <ResumeCard type="Débito" value={income.debit} />
-        <ResumeCard type="Dinheiro" value={income.cash} />
-      </View>
+          <ResumeCard type="Pix" value={income.pix} isOutcome={false} />
+          <ResumeCard type="Crédito" value={income.credit} isOutcome={false} />
+          <ResumeCard type="Débito" value={income.debit} isOutcome={false} />
+          <ResumeCard type="Dinheiro" value={income.cash} isOutcome={false} />
+        </View>
 
-      <View className="mt-2">
-        <Text className="mb-2 text-lg font-bold text-red-500">Resumo de saída</Text>
+        <View className="flex-1">
+          <Text className="mb-2 text-lg font-bold text-red-500">Saída</Text>
 
-        <ResumeCard type="Pix" value={outcome.pix} />
-        <ResumeCard type="Crédito" value={outcome.credit} />
-        <ResumeCard type="Débito" value={outcome.debit} />
-        <ResumeCard type="Dinheiro" value={outcome.cash} />
+          <ResumeCard type="Pix" value={outcome.pix} />
+          <ResumeCard type="Crédito" value={outcome.credit} />
+          <ResumeCard type="Débito" value={outcome.debit} />
+          <ResumeCard type="Dinheiro" value={outcome.cash} />
+        </View>
       </View>
     </Box>
   );
