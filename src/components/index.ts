@@ -1,6 +1,7 @@
 export * from './BillCard';
 export * from './Box';
 export * from './Card';
+export * from './Chart';
 export * from './CustomButton';
 export * from './CustomCheckbox';
 export * from './Form/FormPasswordInput';
