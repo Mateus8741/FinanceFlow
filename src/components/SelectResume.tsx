@@ -8,11 +8,10 @@ const paddingHorizontal = 16;
 const indicatorWidth = width / 2 - 2 * paddingHorizontal;
 
 interface SelectResumeProps {
-  listType: 'income' | 'outcome';
   setListType: (type: 'income' | 'outcome') => void;
 }
 
-export function SelectResume({ listType, setListType }: SelectResumeProps) {
+export function SelectResume({ setListType }: SelectResumeProps) {
   const indicatorPosition = useSharedValue(0);
 
   const handlePress = (type: 'income' | 'outcome') => {
