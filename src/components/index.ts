@@ -15,6 +15,7 @@ export * from './MyCards';
 export * from './PasswordInput';
 export * from './ProfileMenu';
 export * from './ResumeCard';
+export * from './SelectResume';
 export * from './TextInput';
 export * from './ThemeSelect';
 export * from './TransactionCard';
