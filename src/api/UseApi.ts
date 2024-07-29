@@ -1,4 +1,4 @@
-import { LoginScheema } from '@/schemas';
+import { LoginScheema, UpdateScheema } from '@/schemas';
 import { supabase } from '@/utils/supabase';
 
 async function Login({ email, password }: LoginScheema) {
@@ -55,14 +55,7 @@ async function AddBill(data: AddBillPropsApi) {
   });
 }
 
-interface UpdateProfileProps {
-  first_name?: string;
-  last_name?: string;
-  birth_date?: string;
-  email?: string;
-}
-
-async function UpdateProfile({ first_name, last_name, birth_date, email }: UpdateProfileProps) {
+async function UpdateProfile({ first_name, last_name, birth_date, email }: UpdateScheema) {
   return await supabase.auth.updateUser({
     email,
     data: {

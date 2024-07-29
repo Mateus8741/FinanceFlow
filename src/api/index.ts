@@ -6,4 +6,5 @@ export * from './UseAuthCases/SignOutUser';
 
 export * from './UseAppCases/AddBill';
 export * from './UseAppCases/GetTransactions';
+export * from './UseAppCases/UpdateProfile';
 
