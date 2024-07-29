@@ -14,14 +14,14 @@ export function ResumeScreen() {
     { x: 'Crédito', y: income.credit, color: colors.yellow },
     { x: 'Débito', y: income.debit, color: colors.red[350] },
     { x: 'Dinheiro', y: income.cash, color: colors.green[500] },
-    // { x: 'Pix', y: income.pix, color: colors.blue[500] },
+    { x: 'Pix', y: income.pix, color: colors.blue[500] },
   ];
 
   const outcoming = [
     { x: 'Crédito', y: outcome.credit, color: colors.yellow },
-    // { x: 'Débito', y: outcome.debit, color: colors.red[350] },
+    { x: 'Débito', y: outcome.debit, color: colors.red[350] },
     { x: 'Dinheiro', y: outcome.cash, color: colors.green[500] },
-    // { x: 'Pix', y: outcome.pix, color: colors.blue[500] },
+    { x: 'Pix', y: outcome.pix, color: colors.blue[500] },
   ];
 
   return (
