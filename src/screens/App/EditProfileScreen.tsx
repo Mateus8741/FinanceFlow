@@ -4,13 +4,19 @@ import { useForm } from 'react-hook-form';
 import { Pressable, Text, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
+import { UseApi } from '@/api';
 import { Box, CustomButton, FormPasswordInput, FormTextInput, Icon } from '@/components';
-import { RegisterScheema, registerScheema } from '@/schemas';
+import { useUserStorage } from '@/contexts';
+import { UpdateScheema, updateScheema } from '@/schemas';
 import { colors } from '@/theme/colors';
 
 export function EditProfileScreen({ navigation }: AppScreenProps<'EditProfileScreen'>) {
+  // const { update } = useUpdateProfile();
+  const { UpdateProfile } = UseApi();
+  const { user } = useUserStorage();
+
   const { control, handleSubmit } = useForm({
-    resolver: zodResolver(registerScheema),
+    resolver: zodResolver(updateScheema),
 
     defaultValues: {
       name: '',
@@ -30,8 +36,14 @@ export function EditProfileScreen({ navigation }: AppScreenProps<'EditProfileScr
     navigation.goBack();
   }
 
-  function handleSaveChanges(data: RegisterScheema) {
+  function handleSaveChanges(data: UpdateScheema) {
     console.log(data);
+    UpdateProfile({
+      email: data.email,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      birth_date: data.birth_date,
+    });
   }
 
   return (
