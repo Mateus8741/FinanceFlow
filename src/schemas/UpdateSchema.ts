@@ -2,10 +2,10 @@ import { z } from 'zod';
 
 export const updateScheema = z
   .object({
-    name: z.string().optional(),
-    lastName: z.string().optional(),
+    first_name: z.string().optional(),
+    last_name: z.string().optional(),
     email: z.string().optional(),
-    birthDate: z.string().optional(),
+    birth_date: z.string().optional(),
     password: z.string().optional(),
     confirmPassword: z.string().optional(),
   })
