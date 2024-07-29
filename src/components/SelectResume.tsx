@@ -4,8 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import { colors } from '@/theme/colors';
 
 const { width } = Dimensions.get('window');
-const paddingHorizontal = 16;
-const indicatorWidth = width / 2 - 2 * paddingHorizontal;
+const indicatorWidth = width / 2;
 
 interface SelectResumeProps {
   setListType: (type: 'income' | 'outcome') => void;
@@ -16,7 +15,7 @@ export function SelectResume({ setListType }: SelectResumeProps) {
 
   const handlePress = (type: 'income' | 'outcome') => {
     setListType(type);
-    indicatorPosition.value = withTiming(type === 'income' ? 0 : width / 2, { duration: 300 });
+    indicatorPosition.value = withTiming(type === 'income' ? 0 : indicatorWidth, { duration: 300 });
   };
 
   const indicatorStyle = useAnimatedStyle(() => ({
@@ -25,20 +24,20 @@ export function SelectResume({ setListType }: SelectResumeProps) {
 
   return (
     <View
-      className="relative flex-row"
+      className="-mx-7 h-16 flex-row rounded-md bg-white shadow-sm dark:bg-glassDark"
       style={{
         position: 'relative',
       }}>
       <Pressable
         onPress={() => handlePress('income')}
         className="flex-1 items-center justify-center py-2">
-        <Text>Entrada</Text>
+        <Text className="text-lg font-bold text-black dark:text-white">Entrada</Text>
       </Pressable>
 
       <Pressable
         onPress={() => handlePress('outcome')}
         className="flex-1 items-center justify-center py-2">
-        <Text>Saída</Text>
+        <Text className="text-lg font-bold text-black dark:text-white">Saída</Text>
       </Pressable>
 
       <Animated.View
@@ -47,6 +46,7 @@ export function SelectResume({ setListType }: SelectResumeProps) {
             position: 'absolute',
             bottom: -2,
             width: indicatorWidth,
+            left: 4,
             height: 2,
             backgroundColor: colors.blue[500],
           },
