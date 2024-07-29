@@ -55,6 +55,24 @@ async function AddBill(data: AddBillPropsApi) {
   });
 }
 
+interface UpdateProfileProps {
+  first_name?: string;
+  last_name?: string;
+  birth_date?: string;
+  email?: string;
+}
+
+async function UpdateProfile({ first_name, last_name, birth_date, email }: UpdateProfileProps) {
+  return await supabase.auth.updateUser({
+    email,
+    data: {
+      first_name,
+      last_name,
+      birth_date,
+    },
+  });
+}
+
 export function UseApi() {
   return {
     Login,
@@ -62,5 +80,6 @@ export function UseApi() {
     Register,
     ResetPassword,
     AddBill,
+    UpdateProfile,
   };
 }
