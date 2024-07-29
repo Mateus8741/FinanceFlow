@@ -22,6 +22,7 @@ const useUserStore = create<UserProps>()(
           email: '',
           first_name: '',
           last_name: '',
+          id: '',
         },
       },
       setUser: (user) => set({ user }),
