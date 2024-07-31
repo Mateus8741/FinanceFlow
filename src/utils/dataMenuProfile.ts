@@ -6,6 +6,10 @@ export const dataMenuProfile = [
         name: 'Editar perfil',
         icon: 'Pencil',
       },
+      {
+        name: 'Mudar senha',
+        icon: 'Lock',
+      },
       //   {
       //     name: 'Configurações',
       //     icon: 'Settings',
