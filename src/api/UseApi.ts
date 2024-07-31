@@ -66,6 +66,22 @@ async function UpdateProfile({ first_name, last_name, birth_date, email }: Updat
   });
 }
 
+export interface AddCardProps {
+  bank_name: string;
+  validity: string;
+  limit: number;
+  card_id: string;
+}
+
+async function AddCard(data: AddCardProps) {
+  return supabase.from('Cards').insert({
+    bank_name: data.bank_name,
+    validity: data.validity,
+    limit: data.limit,
+    card_id: data.card_id,
+  });
+}
+
 export function UseApi() {
   return {
     Login,
@@ -74,5 +90,6 @@ export function UseApi() {
     ResetPassword,
     AddBill,
     UpdateProfile,
+    AddCard,
   };
 }
