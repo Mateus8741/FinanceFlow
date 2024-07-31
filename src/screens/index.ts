@@ -3,6 +3,7 @@ export * from './Auth/LoginScreen';
 export * from './Auth/RegisterScreen';
 
 export * from './App/AddBillScreen';
+export * from './App/ChandePasswordScreen';
 export * from './App/EditProfileScreen';
 export * from './App/HomeScreen';
 export * from './App/ProfileScreen';
