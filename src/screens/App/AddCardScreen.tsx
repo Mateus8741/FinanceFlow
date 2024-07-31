@@ -23,8 +23,8 @@ export function AddCardScreen() {
     mode: 'onSubmit',
   });
 
-  function handleAddCard() {
-    console.log('Adicionar cartão');
+  function handleAddCard(data: AddCardSchema) {
+    console.log(data);
   }
 
   return (
@@ -56,6 +56,7 @@ export function AddCardScreen() {
               <TextInput
                 value={value}
                 onBlur={onBlur}
+                maxLength={5}
                 keyboardType="numeric"
                 onChangeText={(value) => onChange(formatBirthDate(value))}
                 label="Data de validade"
