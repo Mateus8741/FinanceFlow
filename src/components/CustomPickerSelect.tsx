@@ -89,6 +89,8 @@ export function CustomPickerSelect({
 }: CustomPickerSelectProps) {
   const { colorScheme } = useColorScheme();
 
+  const labelcolor = colorScheme === 'dark' ? colors.white : colors.black;
+
   return (
     <View className={containerClassName}>
       {label && <Text className="mb-2 font-bold text-black dark:text-white">{label}</Text>}
@@ -100,7 +102,11 @@ export function CustomPickerSelect({
           placeholder={{
             label: placeholder,
             value: '',
-            color: colors.gray[400],
+            color: labelcolor,
+          }}
+          textInputProps={{
+            selectionColor: labelcolor,
+            className: 'text-black dark:text-white',
           }}
           style={{
             viewContainer: {
@@ -111,6 +117,7 @@ export function CustomPickerSelect({
               paddingHorizontal: 20,
             },
           }}
+          doneText="OK"
           fixAndroidTouchableBug
           darkTheme={colorScheme === 'dark'}
           {...pickerSelectProps}
