@@ -1,19 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useColorScheme } from 'nativewind';
 import { useForm } from 'react-hook-form';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
 import { useUpdateProfile } from '@/api';
-import { Box, CustomButton, FormTextInput, Icon } from '@/components';
+import { BackButton, Box, CustomButton, FormTextInput } from '@/components';
 import { useUserStorage } from '@/contexts';
 import { UpdateScheema, updateScheema } from '@/schemas';
-import { colors } from '@/theme/colors';
 
 export function EditProfileScreen({ navigation }: AppScreenProps<'EditProfileScreen'>) {
   const { user } = useUserStorage();
   const { update, isPending } = useUpdateProfile();
-  const { colorScheme } = useColorScheme();
 
   const {
     control,
@@ -32,12 +29,6 @@ export function EditProfileScreen({ navigation }: AppScreenProps<'EditProfileScr
     mode: 'onChange',
   });
 
-  const iconColor = colorScheme === 'dark' ? colors.gray.bgLight : colors.gray.bg;
-
-  function handleGoBack() {
-    navigation.goBack();
-  }
-
   function handleSaveChanges(data: UpdateScheema) {
     update({
       first_name: data.first_name,
@@ -50,11 +41,7 @@ export function EditProfileScreen({ navigation }: AppScreenProps<'EditProfileScr
   return (
     <>
       <Box>
-        <Pressable
-          className="h-6 w-6 items-center justify-center rounded-xl bg-white p-6 shadow-sm dark:bg-glassDark"
-          onPress={handleGoBack}>
-          <Icon icon="ArrowLeft" size={22} color={iconColor} />
-        </Pressable>
+        <BackButton />
 
         <View className="flex-1">
           <View className="items-cente mt-7 rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
