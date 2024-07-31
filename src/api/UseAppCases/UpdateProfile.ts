@@ -1,18 +1,17 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import { UseApi } from '../UseApi';
 
+import { useUserStorage } from '@/contexts';
 import { UpdateScheema } from '@/schemas';
 
 export function useUpdateProfile() {
   const { UpdateProfile } = UseApi();
-
-  const queryClient = useQueryClient();
+  const { setUser } = useUserStorage();
 
   const { mutate, isSuccess, isPending, error } = useMutation({
     mutationFn: (data: UpdateScheema) => UpdateProfile(data),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['all-transactions'] });
       console.log('Profile updated!');
     },
     onSettled(data, error, variables, context) {
@@ -20,7 +19,15 @@ export function useUpdateProfile() {
         console.error(error);
       }
 
-      console.log(data?.data.user?.user_metadata);
+      setUser({
+        user_metadata: {
+          id: data?.data.user?.id!,
+          birth_date: data?.data.user?.user_metadata.birth_date,
+          email: data?.data.user?.user_metadata.email,
+          first_name: data?.data.user?.user_metadata.first_name,
+          last_name: data?.data.user?.user_metadata.last_name,
+        },
+      });
     },
   });
 
