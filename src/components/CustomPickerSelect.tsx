@@ -105,7 +105,7 @@ export function CustomPickerSelect({
               justifyContent: 'center',
               backgroundColor: 'transparent',
               paddingVertical: 10,
-              paddingHorizontal: 8,
+              paddingHorizontal: 20,
             },
           }}
           fixAndroidTouchableBug
