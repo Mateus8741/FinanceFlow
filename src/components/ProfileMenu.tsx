@@ -5,12 +5,14 @@ import { Pressable, Text, View } from 'react-native';
 import { Icon } from './Icons/CustonIcons';
 import { ThemeSelect } from './ThemeSelect';
 
+import { useLogOutUser } from '@/api';
 import { useThemeChanger } from '@/service';
 import { colors } from '@/theme/colors';
 import { dataMenuProfile } from '@/utils';
 
 export function ProfileMenu() {
   const { navigate } = useNavigation<any>();
+  const { logout } = useLogOutUser();
 
   const { handleThemeChange } = useThemeChanger();
   const [selectedTheme, setSelectedTheme] = useState('system');
@@ -19,6 +21,10 @@ export function ProfileMenu() {
     setSelectedTheme(theme);
     handleThemeChange(theme);
   };
+
+  function handleLogOut() {
+    logout();
+  }
 
   function handleNavigate(route: string) {
     switch (route) {
@@ -82,6 +88,18 @@ export function ProfileMenu() {
           themeValue="dark"
           onPress={() => handleThemeSelect('dark')}
         />
+      </View>
+
+      <View className="my-6 border-b border-gray-100 dark:border-gray-500" />
+
+      <View className="flex-row items-center justify-between">
+        <Text className="text-lg font-semibold text-black dark:text-white">Sair</Text>
+
+        <Pressable
+          className="items-center justify-center rounded-xl bg-red-200 p-2 dark:bg-red-900"
+          onPress={handleLogOut}>
+          <Icon icon="LogOut" size={25} color={colors.red[500]} />
+        </Pressable>
       </View>
     </View>
   );
