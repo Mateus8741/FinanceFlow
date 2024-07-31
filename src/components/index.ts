@@ -6,6 +6,7 @@ export * from './CustomButton';
 export * from './CustomCheckbox';
 export * from './CustomPickerSelect';
 export * from './Form/FormPasswordInput';
+export * from './Form/FormPickerSelect';
 export * from './Form/FormTextInput';
 export * from './Header';
 export * from './HeaderData';
