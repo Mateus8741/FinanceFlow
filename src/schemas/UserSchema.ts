@@ -1,5 +1,5 @@
 export interface UserSchema {
-  session: Session;
+  session?: Session;
   user_metadata: Usermetadata;
 }
 
