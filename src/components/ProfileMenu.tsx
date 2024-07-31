@@ -29,6 +29,10 @@ export function ProfileMenu() {
       case 'Fale conosco':
         navigate('ContactScreen');
         break;
+
+      case 'Mudar senha':
+        navigate('ChangePasswordScreen');
+        break;
     }
   }
 
