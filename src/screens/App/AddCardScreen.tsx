@@ -2,11 +2,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 
+import { useAddCreditCard } from '@/api';
 import { BackButton, Box, CustomButton, FormPickerSelect, TextInput } from '@/components';
+import { useUserStorage } from '@/contexts';
 import { AddCardSchema, addCardSchema } from '@/schemas';
-import { formatBirthDate, formatCurrencyOnDigiting, listBanks } from '@/utils';
+import { formatBirthDate, formatCurrencyOnDigiting, listBanks, parseCurrency } from '@/utils';
 
 export function AddCardScreen() {
+  const { user } = useUserStorage();
+  const { addCard, isPending } = useAddCreditCard();
+
   const {
     control,
     handleSubmit,
@@ -24,7 +29,12 @@ export function AddCardScreen() {
   });
 
   function handleAddCard(data: AddCardSchema) {
-    console.log(data);
+    addCard({
+      card_id: user?.user_metadata.id || '',
+      bank_name: data.bank_name,
+      validity: data.validity,
+      limit: parseCurrency(data.limit),
+    });
   }
 
   return (
@@ -86,7 +96,7 @@ export function AddCardScreen() {
         title="Adicionar cartão"
         onPress={handleSubmit(handleAddCard)}
         isDisabled={!isDirty || !isValid}
-        // isLoading={isSubmitting}
+        isLoading={isPending}
       />
     </Box>
   );
