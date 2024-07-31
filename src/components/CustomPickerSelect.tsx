@@ -64,6 +64,7 @@
 // }
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { Platform, Text, View } from 'react-native';
 import RNPickerSelect, { Item, PickerSelectProps } from 'react-native-picker-select';
@@ -86,6 +87,8 @@ export function CustomPickerSelect({
   placeholder = 'Selecione',
   ...pickerSelectProps
 }: CustomPickerSelectProps) {
+  const { colorScheme } = useColorScheme();
+
   return (
     <View className={containerClassName}>
       {label && <Text className="mb-2 font-bold text-black dark:text-white">{label}</Text>}
@@ -109,6 +112,7 @@ export function CustomPickerSelect({
             },
           }}
           fixAndroidTouchableBug
+          darkTheme={colorScheme === 'dark'}
           {...pickerSelectProps}
         />
         {Platform.OS === 'ios' && (
