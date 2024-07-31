@@ -4,12 +4,13 @@ import React from 'react';
 
 import { AppTabBottomTabParamList, AppTabNavigator } from './BottomTabsNavigation/AppTabNavigator';
 
-import { ChangePasswordScreen, EditProfileScreen } from '@/screens';
+import { AddCardScreen, ChangePasswordScreen, EditProfileScreen } from '@/screens';
 
 export type AppStackParamList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   EditProfileScreen: undefined;
   ChangePasswordScreen: undefined;
+  AddCardScreen: undefined;
 };
 
 export function AppStack() {
@@ -34,6 +35,14 @@ export function AppStack() {
       <Screen
         name="ChangePasswordScreen"
         component={ChangePasswordScreen}
+        options={{
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
+        }}
+      />
+      <Screen
+        name="AddCardScreen"
+        component={AddCardScreen}
         options={{
           presentation: 'modal',
           animation: 'slide_from_bottom',
