@@ -6,7 +6,7 @@ export const updateScheema = z
     last_name: z.string().min(3, 'Mínimo de 3 caracteres').optional(),
     email: z.string().email('E-mail inválido').optional(),
     birth_date: z.string().min(10, 'Data de nascimento inválida').optional(),
-    password: z.string().optional(),
+    password: z.string().min(6, 'Mínimo de 6 caracteres').optional(),
     confirmPassword: z.string().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
