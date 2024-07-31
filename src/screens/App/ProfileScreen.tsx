@@ -1,17 +1,10 @@
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 
-import { useLogOutUser } from '@/api';
-import { Box, Icon, ProfileMenu } from '@/components';
+import { Box, ProfileMenu } from '@/components';
 import { useUserStorage } from '@/contexts';
-import { colors } from '@/theme/colors';
 
 export function ProfileScreen() {
   const { user } = useUserStorage();
-  const { logout } = useLogOutUser();
-
-  function handleLogOut() {
-    logout();
-  }
 
   // const uri = 'https://avatars.githubusercontent.com/u/39889384?v=4';
   const name = `${user?.user_metadata.first_name}+${user?.user_metadata.last_name}`;
@@ -28,16 +21,6 @@ export function ProfileScreen() {
           flexGrow: 1,
           paddingBottom: 20,
         }}>
-        <View className="mb-4 flex-row items-center justify-between">
-          <View className="h-[35px] w-[35px]" />
-
-          <Pressable
-            className="items-center justify-center rounded-xl bg-red-200 p-2 dark:bg-red-900"
-            onPress={handleLogOut}>
-            <Icon icon="LogOut" size={22} color={colors.red[500]} />
-          </Pressable>
-        </View>
-
         <View className="items-center justify-center rounded-xl bg-white p-4 shadow-sm dark:bg-glassDark">
           <Image source={{ uri }} alt="avatar" className="h-32 w-32 rounded-full" />
 
