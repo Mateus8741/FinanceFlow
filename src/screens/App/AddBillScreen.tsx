@@ -8,6 +8,7 @@ import {
   Box,
   CusstomCheckbox,
   CustomButton,
+  FormPickerSelect,
   FormTextInput,
   TextInput,
   TransitionTypeButton,
@@ -15,7 +16,7 @@ import {
 import { useUserStorage } from '@/contexts';
 import { AddBillSchema, addBillSchema } from '@/schemas';
 import { colors } from '@/theme/colors';
-import { formatCurrencyOnDigiting, parseCurrency } from '@/utils';
+import { formatCurrencyOnDigiting, listBanks, parseCurrency } from '@/utils';
 
 const data = [
   {
@@ -92,11 +93,13 @@ export function AddBillScreen() {
           paddingBottom: 20,
         }}>
         <View className="flex-1 justify-center gap-6">
-          <FormTextInput
+          <FormPickerSelect
             control={control}
             name="bank"
+            items={listBanks}
             label="Banco"
-            placeholder="Insira o nome do banco"
+            placeholder="Selecione o banco"
+            onValueChange={() => {}}
           />
 
           <FormTextInput
