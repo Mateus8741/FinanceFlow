@@ -17,7 +17,7 @@ export function useGetCards() {
   });
 
   return {
-    cards: data,
+    cards: data?.data,
     error,
     isLoading,
     refetch,

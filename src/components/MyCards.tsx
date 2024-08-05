@@ -6,9 +6,12 @@ import { AddCardButton } from './AddCardButton';
 import { Card } from './Card';
 import { Icon } from './Icons/CustonIcons';
 
+import { useGetCards } from '@/api';
 import { colors } from '@/theme/colors';
 
 export function MyCards() {
+  const { cards, isLoading } = useGetCards();
+
   const { colorScheme } = useColorScheme();
 
   const colorIcon = colorScheme === 'dark' ? colors.white : colors.black;
@@ -21,59 +24,22 @@ export function MyCards() {
         <Text className="text-lg text-black dark:text-white">meus cartões</Text>
       </View>
 
-      {/* {data.map((item) => (
-        <Fragment key={item.id}>
-          <Card
-            currentValue={item.currentValue}
-            totalValue={item.totalValue}
-            dueDate={item.dueDate}
-            accountName={item.accountName}
-          />
-
-          <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />
-        </Fragment>
-      ))} */}
-
-      {data.length ? (
-        <AddCardButton />
-      ) : (
-        data.map((item) => (
+      {cards ? (
+        cards.map((item) => (
           <Fragment key={item.id}>
             <Card
-              currentValue={item.currentValue}
-              totalValue={item.totalValue}
-              dueDate={item.dueDate}
-              accountName={item.accountName}
+              currentValue={700}
+              totalValue={item.limit!}
+              dueDate={item.validity!}
+              accountName={item.bank_name!}
             />
 
             <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />
           </Fragment>
         ))
+      ) : (
+        <AddCardButton />
       )}
     </View>
   );
 }
-
-const data = [
-  {
-    id: 1,
-    currentValue: 500,
-    totalValue: 1000,
-    dueDate: '10/10',
-    accountName: 'Cartão',
-  },
-  {
-    id: 2,
-    currentValue: 600,
-    totalValue: 1000,
-    dueDate: '10/10',
-    accountName: 'Cartão',
-  },
-  {
-    id: 3,
-    currentValue: 1000,
-    totalValue: 1000,
-    dueDate: '10/10',
-    accountName: 'Cartão',
-  },
-];
