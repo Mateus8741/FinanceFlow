@@ -1,5 +1,5 @@
 export * from './AddBillSchema';
-export * from './AddCardSchema';
+export * from './CardSchema';
 export * from './ForgotPasswordSchema';
 export * from './LoginSchema';
 export * from './RegisterSchema';

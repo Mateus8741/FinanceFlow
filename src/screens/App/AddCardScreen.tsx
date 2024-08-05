@@ -5,7 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { useAddCreditCard } from '@/api';
 import { BackButton, Box, CustomButton, FormPickerSelect, TextInput } from '@/components';
 import { useUserStorage } from '@/contexts';
-import { AddCardSchema, addCardSchema } from '@/schemas';
+import { CardSchema, cardSchema } from '@/schemas';
 import { formatBirthDate, formatCurrencyOnDigiting, listBanks, parseCurrency } from '@/utils';
 
 export function AddCardScreen() {
@@ -16,8 +16,8 @@ export function AddCardScreen() {
     control,
     handleSubmit,
     formState: { isDirty, isValid },
-  } = useForm<AddCardSchema>({
-    resolver: zodResolver(addCardSchema),
+  } = useForm<CardSchema>({
+    resolver: zodResolver(cardSchema),
 
     defaultValues: {
       bank_name: '',
@@ -28,7 +28,7 @@ export function AddCardScreen() {
     mode: 'onSubmit',
   });
 
-  function handleAddCard(data: AddCardSchema) {
+  function handleAddCard(data: CardSchema) {
     addCard({
       card_id: user?.user_metadata.id || '',
       bank_name: data.bank_name,
