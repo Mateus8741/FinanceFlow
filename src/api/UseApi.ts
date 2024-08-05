@@ -1,4 +1,4 @@
-import { LoginScheema, UpdateScheema } from '@/schemas';
+import { LoginScheema, UpdateScheema, UserSchema } from '@/schemas';
 import { supabase } from '@/utils/supabase';
 
 async function Login({ email, password }: LoginScheema) {
@@ -82,6 +82,14 @@ async function AddCard(data: AddCardProps) {
   });
 }
 
+async function GetCards(user: UserSchema | null) {
+  return await supabase
+    .from('Cards')
+    .select()
+    .eq('card_id', user?.user_metadata.id || '')
+    .order('created_at', { ascending: false });
+}
+
 export function UseApi() {
   return {
     Login,
@@ -91,5 +99,6 @@ export function UseApi() {
     AddBill,
     UpdateProfile,
     AddCard,
+    GetCards,
   };
 }
