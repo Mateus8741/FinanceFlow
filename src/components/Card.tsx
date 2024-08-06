@@ -34,24 +34,25 @@ export function Card({ currentValue, totalValue, dueDate, accountName }: CardPro
   const formattedTotalValue = FormatCurrency(totalValue);
 
   return (
-    <View className="mt-3.5 flex-row items-center justify-between gap-2">
+    <View className="mt-3.5 items-center justify-between gap-2">
       <View className="h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
         <Icon icon="Landmark" size={22} color={colorIcon} />
       </View>
 
-      <View className="gap-2">
+      <View className="flex-row justify-between">
         <Text className="text-md font-bold text-black dark:text-white">{accountName}</Text>
-        <Text className="text-md text-black dark:text-white">{formattedCurrentValue}</Text>
-      </View>
 
-      <View className="mb-1 h-3 flex-1 self-end rounded-full bg-gray-250 dark:bg-gray-700">
-        <View className={`h-3 rounded-full ${barColor}`} style={{ width: `${percentage}%` }} />
-      </View>
-
-      <View className="gap-y-2">
         <View className="flex-row gap-x-1">
           <Text className="text-md text-black dark:text-white">vence</Text>
           <Text className="text-md font-bold text-black dark:text-white">{dueDate}</Text>
+        </View>
+      </View>
+
+      <View className="flex-row">
+        <Text className="text-md text-black dark:text-white">{formattedCurrentValue}</Text>
+
+        <View className="mb-1 h-3 flex-1 self-end rounded-full bg-gray-250 dark:bg-gray-700">
+          <View className={`h-3 rounded-full ${barColor}`} style={{ width: `${percentage}%` }} />
         </View>
 
         <Text className="text-md text-black dark:text-white">{formattedTotalValue}</Text>
