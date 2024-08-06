@@ -5,12 +5,17 @@ import { Text, View } from 'react-native';
 import { AddCardButton } from './AddCardButton';
 import { Card } from './Card';
 import { Icon } from './Icons/CustonIcons';
+import { Loading } from './Loading';
 
-import { useGetCards } from '@/api';
+import { useGetCards, useGetTransactions } from '@/api';
 import { colors } from '@/theme/colors';
+import { useCurrentValuePerBank } from '@/utils';
 
 export function MyCards() {
   const { cards, isLoading } = useGetCards();
+  const { transaction } = useGetTransactions();
+
+  const currentValuePerBank = useCurrentValuePerBank(cards!, transaction!);
 
   const { colorScheme } = useColorScheme();
 
@@ -24,11 +29,36 @@ export function MyCards() {
         <Text className="text-lg text-black dark:text-white">meus cartões</Text>
       </View>
 
+      {/* {isLoading && (
+        <View className="flex-1 animate-spin items-center justify-center">
+          <Icon icon="LoaderPinwheel" size={32} color={colors.blue[500]} />
+        </View>
+      )}
+
       {cards ? (
         cards.map((item) => (
           <Fragment key={item.id}>
             <Card
-              currentValue={700}
+              currentValue={currentValuePerBank![item.bank_name!] || 0}
+              totalValue={item.limit!}
+              dueDate={item.validity!}
+              accountName={item.bank_name!}
+            />
+
+            <View className="mt-2 h-px bg-gray-200 dark:bg-gray-700" />
+          </Fragment>
+        ))
+      ) : (
+        <AddCardButton />
+      )} */}
+
+      {isLoading ? (
+        <Loading />
+      ) : cards ? (
+        cards.map((item) => (
+          <Fragment key={item.id}>
+            <Card
+              currentValue={currentValuePerBank[item.bank_name!] || 0}
               totalValue={item.limit!}
               dueDate={item.validity!}
               accountName={item.bank_name!}
