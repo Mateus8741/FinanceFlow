@@ -1,13 +1,6 @@
 import { useMemo } from 'react';
 
-import { CardSchema, TransactionSchema } from '@/schemas';
-
-interface UseCurrentValuePerBankProps {
-  cards: CardSchema[];
-  transaction: TransactionSchema[];
-}
-
-export function useCurrentValuePerBank({ cards, transaction }: UseCurrentValuePerBankProps) {
+export function useCurrentValuePerBank(cards: any[], transaction: any[]) {
   const currentValuePerBank = useMemo(() => {
     return cards?.reduce(
       (acc, card) => {
