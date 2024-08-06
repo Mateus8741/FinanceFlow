@@ -13,6 +13,7 @@ export * from './Form/FormTextInput';
 export * from './Header';
 export * from './HeaderData';
 export * from './Icons/CustonIcons';
+export * from './Loading';
 export * from './MoneyCard';
 export * from './MyBills';
 export * from './MyCards';
