@@ -8,6 +8,7 @@ import Bv from './Logos/Bv.svg';
 import Caixa from './Logos/Caixa.svg';
 import Daycoval from './Logos/Daycoval.svg';
 import Fibra from './Logos/Fibra.svg';
+import Induvisal from './Logos/Induvisal.svg';
 import Inter from './Logos/Inter.svg';
 import Itau from './Logos/Itau.svg';
 import Mercantil from './Logos/Mercantil.svg';
@@ -46,4 +47,5 @@ export const BankLogos = {
   Safra,
   Santander,
   Sofisa,
+  Induvisal,
 };
