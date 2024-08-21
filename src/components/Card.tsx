@@ -1,9 +1,7 @@
-import { useColorScheme } from 'nativewind';
 import { Text, View } from 'react-native';
 
 import { BankLog } from './BankLogo';
 
-import { colors } from '@/theme/colors';
 import { FormatCurrency } from '@/utils';
 
 interface CardProps {
@@ -14,10 +12,6 @@ interface CardProps {
 }
 
 export function Card({ currentValue, totalValue, dueDate, accountName }: CardProps) {
-  const { colorScheme } = useColorScheme();
-
-  const colorIcon = colorScheme === 'dark' ? colors.white : colors.black;
-
   const getBarColor = (percentage: number) => {
     if (percentage <= 50) {
       return 'bg-green-500';
