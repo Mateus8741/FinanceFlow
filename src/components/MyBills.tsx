@@ -3,11 +3,18 @@ import { Text, View } from 'react-native';
 
 import { BillCard } from './BillCard';
 import { Icon } from './Icons/CustonIcons';
+import { Loading } from './Loading';
 
+import { useGetCards, useGetTransactions } from '@/api';
 import { colors } from '@/theme/colors';
+import { useCurrentValuePerBank } from '@/utils';
 
 export function MyBills() {
   const { colorScheme } = useColorScheme();
+  const { cards, isLoading } = useGetCards();
+  const { transaction } = useGetTransactions();
+
+  const currentValuePerBank = useCurrentValuePerBank(cards!, transaction!);
 
   const colorIcon = colorScheme === 'dark' ? colors.white : colors.black;
 
@@ -19,9 +26,17 @@ export function MyBills() {
         <Text className="text-lg text-black dark:text-white">minhas faturas</Text>
       </View>
 
-      {Array.from({ length: 3 }).map((_, index) => (
-        <BillCard key={index} accountName="Nubank" totalValue={1000} />
-      ))}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        Object.keys(currentValuePerBank).map((bankName) => (
+          <BillCard
+            key={bankName}
+            accountName={bankName}
+            totalValue={currentValuePerBank[bankName]}
+          />
+        ))
+      )}
     </View>
   );
 }

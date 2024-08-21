@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import { BankLog } from './BankLogo';
+import { BankLogo } from './BankLogo';
 
 import { FormatCurrency } from '@/utils';
 
@@ -29,7 +29,7 @@ export function Card({ currentValue, totalValue, dueDate, accountName }: CardPro
 
   return (
     <View className="mt-3.5 flex-row items-center justify-between gap-2">
-      <BankLog bankName={accountName} />
+      <BankLogo bankName={accountName} />
 
       <View className="flex-1">
         <View className="flex-1 flex-row justify-between">
