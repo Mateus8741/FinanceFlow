@@ -1,7 +1,7 @@
 import { useColorScheme } from 'nativewind';
 import { Text, View } from 'react-native';
 
-import { Icon } from './Icons/CustonIcons';
+import { BankLog } from './BankLogo';
 
 import { colors } from '@/theme/colors';
 import { FormatCurrency } from '@/utils';
@@ -35,9 +35,7 @@ export function Card({ currentValue, totalValue, dueDate, accountName }: CardPro
 
   return (
     <View className="mt-3.5 flex-row items-center justify-between gap-2">
-      <View className="h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
-        <Icon icon="Landmark" size={22} color={colorIcon} />
-      </View>
+      <BankLog bankName={accountName} />
 
       <View className="flex-1">
         <View className="flex-1 flex-row justify-between">
