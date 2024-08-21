@@ -1,5 +1,6 @@
 export * from './AddCardButton';
 export * from './BackButton';
+export * from './BankLogo';
 export * from './BillCard';
 export * from './Box';
 export * from './Card';
