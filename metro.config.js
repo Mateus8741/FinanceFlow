@@ -1,7 +1,31 @@
+/* eslint-disable prettier/prettier */
+// const { getDefaultConfig } = require('expo/metro-config');
+// const { withNativeWind } = require('nativewind/metro');
+
+// // eslint-disable-next-line no-undef
+// const config = getDefaultConfig(__dirname);
+
+// module.exports = withNativeWind(config, { input: './global.css' });
+
 const { getDefaultConfig } = require('expo/metro-config');
 const { withNativeWind } = require('nativewind/metro');
 
-// eslint-disable-next-line no-undef
-const config = getDefaultConfig(__dirname);
+module.exports = (() => {
+    // eslint-disable-next-line no-undef
+    const config = getDefaultConfig(__dirname);
 
-module.exports = withNativeWind(config, { input: './global.css' });
+    const { transformer, resolver } = config;
+
+    config.transformer = {
+        ...transformer,
+        babelTransformerPath: require.resolve('react-native-svg-transformer/expo'),
+    };
+
+    config.resolver = {
+        ...resolver,
+        assetExts: resolver.assetExts.filter((ext) => ext !== 'svg'),
+        sourceExts: [...resolver.sourceExts, 'svg'],
+    };
+
+    return withNativeWind(config, { input: './global.css' });
+})();
