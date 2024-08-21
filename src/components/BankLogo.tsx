@@ -1,7 +1,7 @@
 import { useColorScheme } from 'nativewind';
 import { View } from 'react-native';
 
-import { Icon } from '.';
+import { Icon } from './Icons/CustonIcons';
 
 import { BankLogos } from '@/assets/mapLogoBank';
 import { colors } from '@/theme/colors';
@@ -10,7 +10,7 @@ interface BankLogoProps {
   bankName: string;
 }
 
-export function BankLog({ bankName }: BankLogoProps) {
+export function BankLogo({ bankName }: BankLogoProps) {
   const { colorScheme } = useColorScheme();
 
   const logos: { [key: string]: React.ElementType } = {
