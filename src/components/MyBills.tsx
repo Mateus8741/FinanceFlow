@@ -29,11 +29,13 @@ export function MyBills() {
       {isLoading ? (
         <Loading />
       ) : (
-        Object.keys(currentValuePerBank).map((bankName) => (
+        cards?.map((item) => (
           <BillCard
-            key={bankName}
-            accountName={bankName}
-            totalValue={currentValuePerBank[bankName]}
+            key={item.id}
+            accountName={item.bank_name!}
+            totalValue={item.limit!}
+            currentValue={currentValuePerBank[item.bank_name!] || 0}
+            dueDate={item.validity!}
           />
         ))
       )}
