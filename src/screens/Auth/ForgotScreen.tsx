@@ -3,13 +3,14 @@ import { useColorScheme } from 'nativewind';
 import { useForm } from 'react-hook-form';
 import { ImageBackground, Text, View } from 'react-native';
 
+import { AuthScreenProps } from '@/Routes';
 import { useResetPassword } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormTextInput } from '@/components';
 import { ForgotPasswordSchema, forgotPasswordSchema } from '@/schemas';
 
-export function ForgotScreen() {
+export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
   const { reset, isPending } = useResetPassword();
 
   const { colorScheme } = useColorScheme();
@@ -32,6 +33,7 @@ export function ForgotScreen() {
 
   function handleForgotPassword({ email }: ForgotPasswordSchema) {
     reset({ email });
+    navigation.goBack();
   }
 
   return (
