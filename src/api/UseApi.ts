@@ -66,6 +66,12 @@ async function UpdateProfile({ first_name, last_name, birth_date, email }: Updat
   });
 }
 
+async function UpdatePassword({ password }: UpdateScheema) {
+  return await supabase.auth.updateUser({
+    password,
+  });
+}
+
 export interface AddCardProps {
   bank_name: string;
   validity: string;
@@ -98,6 +104,7 @@ export function UseApi() {
     ResetPassword,
     AddBill,
     UpdateProfile,
+    UpdatePassword,
     AddCard,
     GetCards,
   };
