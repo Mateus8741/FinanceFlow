@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
 import { useForm } from 'react-hook-form';
-import { ImageBackground, Pressable, Text, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
 import { useLoginUser } from '@/api';
@@ -39,7 +39,6 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
 
   function forgotPassword() {
     navigation.navigate('ForgotScreen');
-    //FIXME: Implementar a funcionalidade de esqueci a senha
   }
 
   function goToRegister() {
@@ -59,14 +58,14 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
               Entre e controle suas finaças
             </Text>
 
-            <View className="mt-6 gap-y-5">
+            <View className="my-6 gap-y-5">
               <FormTextInput control={control} name="email" placeholder="E-mail" />
               <FormPasswordInput control={control} name="password" placeholder="Senha" />
             </View>
 
-            <Pressable onPress={forgotPassword}>
+            {/* <Pressable onPress={forgotPassword}>
               <Text className="my-6 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
-            </Pressable>
+            </Pressable> */}
 
             <CustomButton
               title="Entrar"
