@@ -1,6 +1,7 @@
+import { useNavigation } from '@react-navigation/native';
 import { useColorScheme } from 'nativewind';
 import { Fragment } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { AddCardButton } from './AddCardButton';
 import { Card } from './Card';
@@ -14,6 +15,7 @@ import { useCurrentValuePerBank } from '@/utils';
 export function MyCards() {
   const { cards, isLoading } = useGetCards();
   const { transaction } = useGetTransactions();
+  const { navigate } = useNavigation<any>();
 
   const currentValuePerBank = useCurrentValuePerBank(cards!, transaction!);
 
@@ -21,12 +23,30 @@ export function MyCards() {
 
   const colorIcon = colorScheme === 'dark' ? colors.white : colors.black;
 
+  function addCard() {
+    navigate('AddCardScreen');
+  }
+
   return (
     <View className="mt-5 rounded-xl bg-white px-4 py-5 shadow-sm dark:bg-gray-800">
       <View className="mb-3 flex-row items-center gap-2 border-b-[0.5px] border-gray-300  pb-1.5">
-        <Icon icon="CreditCard" size={24} color={colorIcon} />
+        <View className="flex-1 flex-row gap-x-3">
+          <Icon icon="CreditCard" size={24} color={colorIcon} />
 
-        <Text className="text-lg text-black dark:text-white">meus cartões</Text>
+          <Text className="text-lg text-black dark:text-white">meus cartões</Text>
+        </View>
+
+        {cards ? (
+          <Text className="text-sm text-gray-400 dark:text-gray-500">{cards.length} cartões</Text>
+        ) : (
+          <Text className="text-sm text-gray-400 dark:text-gray-500">0 cartões</Text>
+        )}
+
+        {cards?.length! > 0 && (
+          <Pressable className="rounded-full bg-blue-500 p-1" onPress={addCard}>
+            <Icon icon="Plus" size={20} color={colors.white} />
+          </Pressable>
+        )}
       </View>
 
       {isLoading ? (
