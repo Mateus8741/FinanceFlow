@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Alert, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
 import { useUpdateProfile } from '@/api';
 import { BackButton, Box, CustomButton, FormPasswordInput } from '@/components';
-import { UpdateScheema, updateScheema } from '@/schemas';
+import { ChangePasswordSchema, updateScheema } from '@/schemas';
 
 export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePasswordScreen'>) {
   const { update, isPending } = useUpdateProfile();
@@ -13,6 +13,7 @@ export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePassw
   const {
     control,
     handleSubmit,
+    reset,
     formState: { isDirty, isValid },
   } = useForm({
     resolver: zodResolver(updateScheema),
@@ -25,12 +26,12 @@ export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePassw
     mode: 'onChange',
   });
 
-  function handleUpdatePassword({ password, confirmPassword }: UpdateScheema) {
-    if (password !== confirmPassword) {
-      return Alert.alert('As senhas não coincidem');
+  function handleUpdatePassword({ password, confirmPassword }: ChangePasswordSchema) {
+    if (password === confirmPassword) {
+      update({ password });
+      reset();
+      navigation.goBack();
     }
-
-    update({ password });
   }
 
   return (
