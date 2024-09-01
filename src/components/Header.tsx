@@ -1,15 +1,11 @@
-import { useColorScheme } from 'nativewind';
 import { Image, Text, View } from 'react-native';
-
-import { Icon } from './Icons/CustonIcons';
 
 import defaultProfile from '@/assets/defaultProfile.jpeg';
 import { useUserStorage } from '@/contexts';
-import { colors } from '@/theme/colors';
 
 export function Header() {
   const { user } = useUserStorage();
-  const { colorScheme } = useColorScheme();
+  // const { colorScheme } = useColorScheme();
 
   // const uri = 'https://avatars.githubusercontent.com/u/39889384?v=4';
 
@@ -31,11 +27,11 @@ export function Header() {
         </View>
       </View>
 
-      <Icon
+      {/* <Icon
         icon="Bell"
         size={24}
         color={colorScheme === 'dark' ? colors.gray.bgLight : colors.gray.bg}
-      />
+      /> */}
     </View>
   );
 }
