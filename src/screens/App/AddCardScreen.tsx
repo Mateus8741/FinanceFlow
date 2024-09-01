@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
-import { useAddCreditCard } from '@/api';
+import { useAddCreditCard, useGetCards } from '@/api';
 import { BackButton, Box, CustomButton, FormPickerSelect, TextInput } from '@/components';
 import { useUserStorage } from '@/contexts';
 import { addCardSchema, AddCardSchema } from '@/schemas';
@@ -12,6 +12,7 @@ import { formatBirthDate, formatCurrencyOnDigiting, listBanks, parseCurrency } f
 export function AddCardScreen({ navigation }: AppScreenProps<'AddCardScreen'>) {
   const { user } = useUserStorage();
   const { addCard, isPending } = useAddCreditCard();
+  const { refetch } = useGetCards();
 
   const {
     control,
@@ -39,6 +40,8 @@ export function AddCardScreen({ navigation }: AppScreenProps<'AddCardScreen'>) {
     });
 
     reset();
+
+    refetch();
 
     navigation.goBack();
   }

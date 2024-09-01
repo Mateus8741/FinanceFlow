@@ -10,8 +10,7 @@ export function useAddCreditCard() {
   const { mutate, isSuccess, isPending, error } = useMutation({
     mutationFn: (data: AddCardProps) => AddCard(data),
     onSuccess: () => {
-      //   queryClient.invalidateQueries({ queryKey: ['all-transactions'] });
-      console.log('Card added');
+      queryClient.invalidateQueries({ queryKey: ['all-cards'] });
     },
     onSettled(data, error, variables, context) {
       if (error) {
