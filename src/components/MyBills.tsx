@@ -23,7 +23,13 @@ export function MyBills() {
       <View className="mb-3 flex-row items-center gap-2 border-b-[0.5px] border-gray-300  pb-1.5">
         <Icon icon="Receipt" size={24} color={colorIcon} />
 
-        <Text className="text-lg text-black dark:text-white">minhas faturas</Text>
+        <Text className="flex-1 text-lg text-black dark:text-white">minhas faturas</Text>
+
+        {cards ? (
+          <Text className="text-sm text-gray-400 dark:text-gray-300">{cards.length} faturas</Text>
+        ) : (
+          <Text className="text-sm text-gray-400 dark:text-gray-300">0 faturas</Text>
+        )}
       </View>
 
       {isLoading ? (
