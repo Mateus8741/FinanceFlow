@@ -5,7 +5,6 @@ import { useUserStorage } from '@/contexts';
 
 export function Header() {
   const { user } = useUserStorage();
-  // const { colorScheme } = useColorScheme();
 
   // const uri = 'https://avatars.githubusercontent.com/u/39889384?v=4';
 
@@ -26,12 +25,6 @@ export function Header() {
           <Text className="text-lg font-bold text-black dark:text-white">{fullName}</Text>
         </View>
       </View>
-
-      {/* <Icon
-        icon="Bell"
-        size={24}
-        color={colorScheme === 'dark' ? colors.gray.bgLight : colors.gray.bg}
-      /> */}
     </View>
   );
 }
