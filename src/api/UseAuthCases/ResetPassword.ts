@@ -8,7 +8,7 @@ export function useResetPassword() {
   const { ResetPassword } = UseApi();
 
   const { mutate, isSuccess, isPending } = useMutation({
-    mutationFn: (data: ForgotPasswordSchema) => ResetPassword(data.email),
+    mutationFn: ({ email }: ForgotPasswordSchema) => ResetPassword(email),
     onMutate: () => {
       console.log('reseting password...');
     },
