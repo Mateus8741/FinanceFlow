@@ -93,11 +93,11 @@ export function ProfileMenu() {
       <View className="my-6 border-b border-gray-100 dark:border-gray-500" />
 
       <View className="flex-row items-center justify-between">
-        <Text className="text-lg font-semibold text-black dark:text-white">Sair</Text>
-
         <Pressable
           className="items-center justify-center rounded-xl bg-red-200 p-2 dark:bg-red-900"
           onPress={handleLogOut}>
+          <Text className="text-lg font-semibold text-black dark:text-white">Sair</Text>
+
           <Icon icon="LogOut" size={25} color={colors.red[500]} />
         </Pressable>
       </View>
