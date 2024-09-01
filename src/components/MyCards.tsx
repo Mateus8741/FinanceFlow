@@ -37,9 +37,9 @@ export function MyCards() {
         </View>
 
         {cards ? (
-          <Text className="text-sm text-gray-400 dark:text-gray-500">{cards.length} cartões</Text>
+          <Text className="text-sm text-gray-400 dark:text-gray-300">{cards.length} cartões</Text>
         ) : (
-          <Text className="text-sm text-gray-400 dark:text-gray-500">0 cartões</Text>
+          <Text className="text-sm text-gray-400 dark:text-gray-300">0 cartões</Text>
         )}
 
         {cards?.length! > 0 && (
