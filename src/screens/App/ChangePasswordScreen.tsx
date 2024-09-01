@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
-import { useUpdateProfile } from '@/api';
+import { useUpdatePassword } from '@/api';
 import { BackButton, Box, CustomButton, FormPasswordInput } from '@/components';
 import { ChangePasswordSchema, updateScheema } from '@/schemas';
 
 export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePasswordScreen'>) {
-  const { update, isPending } = useUpdateProfile();
+  const { update, isPending } = useUpdatePassword();
 
   const {
     control,
