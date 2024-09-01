@@ -26,14 +26,14 @@ export function BillCard({ accountName, totalValue, currentValue, dueDate }: Bil
       <View className="mt-4">
         <View className="flex-row items-center justify-between">
           <Text className="text-lg text-black dark:text-white">{formattedCurrentValue}</Text>
-          <Text className="text-sm text-gray-400 dark:text-gray-600">Vencimento {dueDate}</Text>
+          <Text className="text-sm text-gray-400 dark:text-gray-300">Vencimento {dueDate}</Text>
         </View>
 
         <View className="mt-3 h-px bg-gray-200 dark:bg-gray-700" />
 
         <View className="mt-3 flex-row items-center justify-between">
-          <Text className="text-sm text-gray-400 dark:text-gray-600">Limite total</Text>
-          <Text className="text-sm text-gray-400 dark:text-gray-600">{formattedTotalValue}</Text>
+          <Text className="text-sm text-gray-400 dark:text-gray-300">Limite total</Text>
+          <Text className="text-sm text-gray-400 dark:text-gray-300">{formattedTotalValue}</Text>
         </View>
       </View>
     </View>
