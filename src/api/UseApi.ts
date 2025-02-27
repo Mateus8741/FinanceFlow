@@ -1,111 +1,111 @@
-import { LoginScheema, UpdateScheema, UserSchema } from '@/schemas';
-import { supabase } from '@/utils/supabase';
+import { useStore } from '@/store/useStore';
 
-async function Login({ email, password }: LoginScheema) {
-  return await supabase.auth.signInWithPassword({ email, password });
-}
-
-async function Logout() {
-  return await supabase.auth.signOut();
-}
-
-export interface RegisterProps {
+interface SignInData {
   email: string;
   password: string;
-  birthDate: string;
+}
+
+export async function signIn({ email, password }: SignInData) {
+  // Simple mock authentication - in a real app, you'd want proper auth
+  if (email && password) {
+    const mockUser = {
+      id: '1',
+      email,
+      created_at: new Date().toISOString(),
+    };
+    useStore.getState().setUser(mockUser);
+    return { data: { user: mockUser }, error: null };
+  }
+  return { data: null, error: 'Invalid credentials' };
+}
+
+export async function signOut() {
+  useStore.getState().signOut();
+  return { error: null };
+}
+
+interface SignUpData {
+  email: string;
+  password: string;
   name: string;
-  lastName: string;
 }
 
-async function Register({ email, password, birthDate, name, lastName }: RegisterProps) {
-  return await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        first_name: name,
-        last_name: lastName,
-        birth_date: birthDate,
-      },
-    },
-  });
+export async function signUp({ email, password, name }: SignUpData) {
+  if (email && password && name) {
+    const mockUser = {
+      id: '1',
+      email,
+      name,
+      created_at: new Date().toISOString(),
+    };
+    useStore.getState().setUser(mockUser);
+    return { data: { user: mockUser }, error: null };
+  }
+  return { data: null, error: 'Invalid data' };
 }
 
-async function ResetPassword(email: string) {
-  return await supabase.auth.resetPasswordForEmail(email);
+export async function resetPassword(email: string) {
+  // Mock password reset
+  return { data: { message: 'Password reset email sent' }, error: null };
 }
 
-export interface AddBillPropsApi {
-  bill_id: string;
-  bank_name: string;
-  transaction_name: string;
+interface BillData {
+  name: string;
   value: number;
-  transacion_type: 'income' | 'outcome' | null;
-  payment_type: string;
+  dueDate: string;
+  paid: boolean;
+  userId: string;
 }
 
-async function AddBill(data: AddBillPropsApi) {
-  return await supabase.from('Bills').insert({
-    bill_id: data.bill_id,
-    bank_name: data.bank_name,
-    transaction_name: data.transaction_name,
-    value: data.value,
-    transacion_type: data.transacion_type,
-    payment_type: data.payment_type,
-  });
+export async function createBill(billData: BillData) {
+  const bills = useStore.getState().bills;
+  const newBill = { ...billData, id: Date.now().toString() };
+  useStore.getState().setBills([...bills, newBill]);
+  return { data: newBill, error: null };
 }
 
-async function UpdateProfile({ first_name, last_name, birth_date, email }: UpdateScheema) {
-  return await supabase.auth.updateUser({
-    email,
-    data: {
-      first_name,
-      last_name,
-      birth_date,
-    },
-  });
+interface UpdatePasswordData {
+  password: string;
 }
 
-async function UpdatePassword({ password }: UpdateScheema) {
-  return await supabase.auth.updateUser({
-    password,
-  });
+export async function updatePassword({ password }: UpdatePasswordData) {
+  const user = useStore.getState().user;
+  if (user) {
+    useStore.getState().setUser({ ...user, password });
+    return { data: { user }, error: null };
+  }
+  return { data: null, error: 'User not found' };
 }
 
-export interface AddCardProps {
-  bank_name: string;
-  validity: string;
+interface UpdateUserData {
+  name: string;
+}
+
+export async function updateUser({ name }: UpdateUserData) {
+  const user = useStore.getState().user;
+  if (user) {
+    useStore.getState().setUser({ ...user, name });
+    return { data: { user }, error: null };
+  }
+  return { data: null, error: 'User not found' };
+}
+
+interface CardData {
+  name: string;
   limit: number;
-  card_id: string;
+  dueDate: string;
+  closingDate: string;
+  userId: string;
 }
 
-async function AddCard(data: AddCardProps) {
-  return supabase.from('Cards').insert({
-    bank_name: data.bank_name,
-    validity: data.validity,
-    limit: data.limit,
-    card_id: data.card_id,
-  });
+export async function createCard(cardData: CardData) {
+  const cards = useStore.getState().cards;
+  const newCard = { ...cardData, id: Date.now().toString() };
+  useStore.getState().setCards([...cards, newCard]);
+  return { data: newCard, error: null };
 }
 
-async function GetCards(user: UserSchema | null) {
-  return await supabase
-    .from('Cards')
-    .select()
-    .eq('card_id', user?.user_metadata.id || '')
-    .order('created_at', { ascending: false });
-}
-
-export function UseApi() {
-  return {
-    Login,
-    Logout,
-    Register,
-    ResetPassword,
-    AddBill,
-    UpdateProfile,
-    UpdatePassword,
-    AddCard,
-    GetCards,
-  };
+export async function getTransactions() {
+  const transactions = useStore.getState().transactions;
+  return { data: transactions, error: null };
 }
