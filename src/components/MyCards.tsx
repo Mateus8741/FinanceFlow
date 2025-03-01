@@ -8,16 +8,17 @@ import { Card } from './Card';
 import { Icon } from './Icons/CustonIcons';
 import { Loading } from './Loading';
 
-import { useGetCards, useGetTransactions } from '@/api';
 import { colors } from '@/theme/colors';
 import { useCurrentValuePerBank } from '@/utils';
 
 export function MyCards() {
-  const { cards, isLoading } = useGetCards();
-  const { transaction } = useGetTransactions();
   const { navigate } = useNavigation<any>();
 
-  const currentValuePerBank = useCurrentValuePerBank(cards!, transaction!);
+  const cards = [];
+  const isLoading = false;
+  const transaction = [];
+
+  const currentValuePerBank = useCurrentValuePerBank(cards, transaction);
 
   const { colorScheme } = useColorScheme();
 

@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { ImageBackground, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
-import { useLoginUser } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormPasswordInput, FormTextInput } from '@/components';
@@ -29,12 +28,10 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
 
   const { colorScheme } = useColorScheme();
 
-  const { login, isPending } = useLoginUser();
-
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   function handleLogin(data: LoginScheema) {
-    login(data);
+    console.log(data);
   }
 
   function forgotPassword() {
@@ -71,7 +68,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
               title="Entrar"
               onPress={handleSubmit(handleLogin)}
               isDisabled={!isDirty || !isValid}
-              isLoading={isPending}
+              isLoading={false}
             />
 
             <OrView

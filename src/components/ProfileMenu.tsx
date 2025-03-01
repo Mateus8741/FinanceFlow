@@ -5,14 +5,12 @@ import { Pressable, Text, View } from 'react-native';
 import { Icon } from './Icons/CustonIcons';
 import { ThemeSelect } from './ThemeSelect';
 
-import { useLogOutUser } from '@/api';
 import { useThemeChanger } from '@/service';
 import { colors } from '@/theme/colors';
 import { dataMenuProfile } from '@/utils';
 
 export function ProfileMenu() {
   const { navigate } = useNavigation<any>();
-  const { logout } = useLogOutUser();
 
   const { handleThemeChange } = useThemeChanger();
   const [selectedTheme, setSelectedTheme] = useState('system');
@@ -23,7 +21,7 @@ export function ProfileMenu() {
   };
 
   function handleLogOut() {
-    logout();
+    console.log('logout');
   }
 
   function handleNavigate(route: string) {

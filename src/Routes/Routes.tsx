@@ -4,10 +4,8 @@ import React from 'react';
 import { AppStack } from './AppStack';
 import { AuthStack } from './AuthStack';
 
-import { useUserStorage } from '@/contexts';
-
 export function Routes() {
-  const { user } = useUserStorage();
+  const user = true;
 
   return <NavigationContainer>{user ? <AppStack /> : <AuthStack />}</NavigationContainer>;
 }

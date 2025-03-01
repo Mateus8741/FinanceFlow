@@ -5,16 +5,16 @@ import { BillCard } from './BillCard';
 import { Icon } from './Icons/CustonIcons';
 import { Loading } from './Loading';
 
-import { useGetCards, useGetTransactions } from '@/api';
 import { colors } from '@/theme/colors';
 import { useCurrentValuePerBank } from '@/utils';
 
 export function MyBills() {
   const { colorScheme } = useColorScheme();
-  const { cards, isLoading } = useGetCards();
-  const { transaction } = useGetTransactions();
+  const cards = [];
+  const isLoading = false;
+  const transaction = [];
 
-  const currentValuePerBank = useCurrentValuePerBank(cards!, transaction!);
+  const currentValuePerBank = useCurrentValuePerBank(cards, transaction);
 
   const colorIcon = colorScheme === 'dark' ? colors.white : colors.black;
 

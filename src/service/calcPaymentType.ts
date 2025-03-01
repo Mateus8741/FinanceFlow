@@ -1,7 +1,5 @@
-import { useGetTransactions } from '@/api';
-
 function PaymentTotals() {
-  const { transaction } = useGetTransactions();
+  const transaction = [];
 
   const initialTotals = {
     income: { debit: 0, credit: 0, cash: 0, pix: 0 },

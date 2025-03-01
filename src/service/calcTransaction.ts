@@ -1,9 +1,12 @@
 import { useMemo } from 'react';
 
-import { useGetTransactions } from '@/api';
-
 function TransactionCalc() {
-  const { transaction } = useGetTransactions();
+  const transaction = [
+    {
+      transacion_type: 'income',
+      value: 1000,
+    },
+  ];
 
   const { total, income, outcome } = useMemo(() => {
     const totals = transaction?.reduce(
