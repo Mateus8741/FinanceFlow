@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, Text, View } from 'react-native';
 
-import { useAddBilll } from '@/api';
 import {
   Box,
   CusstomCheckbox,
@@ -16,7 +15,7 @@ import {
 import { useUserStorage } from '@/contexts';
 import { AddBillSchema, addBillSchema } from '@/schemas';
 import { colors } from '@/theme/colors';
-import { formatCurrencyOnDigiting, listBanks, parseCurrency } from '@/utils';
+import { formatCurrencyOnDigiting, listBanks } from '@/utils';
 
 const data = [
   {
@@ -39,7 +38,6 @@ const data = [
 
 export function AddBillScreen() {
   const { user } = useUserStorage();
-  const { mutate, error, isSuccess } = useAddBilll();
 
   const {
     control,
@@ -62,24 +60,9 @@ export function AddBillScreen() {
   const [selectedPayment, setSelectedPayment] = useState<{ id: number; text: string } | null>(null);
 
   async function handleAddBill(datas: AddBillSchema) {
-    if (isSuccess) {
-      reset();
-      setSelectedType(null);
-      setSelectedPayment(null);
-    }
-
-    mutate({
-      bill_id: user?.user_metadata.id || '',
-      bank_name: datas.bank,
-      transaction_name: datas.transactionName,
-      value: parseCurrency(datas.value),
-      transacion_type: selectedType,
-      payment_type: selectedPayment?.text || '',
-    });
-
-    if (error) {
-      console.log('erro ao inserir dados', error);
-    }
+    reset();
+    setSelectedType(null);
+    setSelectedPayment(null);
   }
 
   return (

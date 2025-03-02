@@ -4,15 +4,12 @@ import { useForm } from 'react-hook-form';
 import { ImageBackground, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
-import { useResetPassword } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormTextInput } from '@/components';
 import { ForgotPasswordSchema, forgotPasswordSchema } from '@/schemas';
 
 export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
-  const { reset, isPending } = useResetPassword();
-
   const { colorScheme } = useColorScheme();
 
   const {
@@ -32,7 +29,6 @@ export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   function handleForgotPassword({ email }: ForgotPasswordSchema) {
-    reset({ email });
     navigation.goBack();
   }
 
@@ -57,7 +53,6 @@ export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
               title="Recuperar senha"
               onPress={handleSubmit(handleForgotPassword)}
               isDisabled={!isValid || !isDirty}
-              isLoading={isPending}
             />
           </ImageBackground>
         </View>

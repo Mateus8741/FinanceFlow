@@ -3,13 +3,10 @@ import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 
 import { AppScreenProps } from '@/Routes';
-import { useUpdatePassword } from '@/api';
 import { BackButton, Box, CustomButton, FormPasswordInput } from '@/components';
 import { ChangePasswordSchema, updateScheema } from '@/schemas';
 
 export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePasswordScreen'>) {
-  const { update, isPending } = useUpdatePassword();
-
   const {
     control,
     handleSubmit,
@@ -28,7 +25,7 @@ export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePassw
 
   function handleUpdatePassword({ password, confirmPassword }: ChangePasswordSchema) {
     if (password === confirmPassword) {
-      update({ password });
+      console.log(password);
       reset();
       navigation.goBack();
     }
@@ -57,7 +54,6 @@ export function ChangePasswordScreen({ navigation }: AppScreenProps<'ChangePassw
         title="Mudar senha"
         onPress={handleSubmit(handleUpdatePassword)}
         isDisabled={!isDirty || !isValid}
-        isLoading={isPending}
       />
     </Box>
   );

@@ -5,15 +5,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { ImageBackground, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
-import { useRegisterUser } from '@/api';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormPasswordInput, FormTextInput, TextInput } from '@/components';
 import { OrView } from '@/components/OrView';
+import { createAccount } from '@/database/services';
 import { registerScheema, RegisterScheema } from '@/schemas';
 import { colors } from '@/theme/colors';
 import { formatBirthDate } from '@/utils';
-
 export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>) {
   const {
     control,
@@ -37,12 +36,10 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
 
   const { colorScheme } = useColorScheme();
 
-  const { register, isPending } = useRegisterUser();
-
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
-  function handleRegister({ birthDate, email, lastName, name, password }: RegisterScheema) {
-    register({ birthDate, email, lastName, name, password });
+  async function handleRegister({ birthDate, email, lastName, name, password }: RegisterScheema) {
+    await createAccount({ birthDate, email, lastName, name, password, firstName: name });
     reset();
     navigation.navigate('LoginScreen');
   }
@@ -109,7 +106,6 @@ export function RegisterScreen({ navigation }: AuthScreenProps<'RegisterScreen'>
               title="Cadastrar"
               onPress={handleSubmit(handleRegister)}
               isDisabled={!isDirty || !isValid}
-              isLoading={isPending}
             />
 
             <OrView title="Já tem uma conta?" subTitle="Fazer login" onPress={goToLogin} />
