@@ -7,6 +7,7 @@ import { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormTextInput } from '@/components';
+import { forgotPassword } from '@/database/services';
 import { ForgotPasswordSchema, forgotPasswordSchema } from '@/schemas';
 
 export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
@@ -29,6 +30,7 @@ export function ForgotScreen({ navigation }: AuthScreenProps<'ForgotScreen'>) {
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   function handleForgotPassword({ email }: ForgotPasswordSchema) {
+    forgotPassword(email);
     navigation.goBack();
   }
 

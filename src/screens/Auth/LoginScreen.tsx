@@ -63,7 +63,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
             </View>
 
             <Pressable onPress={forgotPassword}>
-              <Text className="my-6 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
+              <Text className="mb-3 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
             </Pressable>
 
             <CustomButton
