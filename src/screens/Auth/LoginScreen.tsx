@@ -1,13 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useColorScheme } from 'nativewind';
 import { useForm } from 'react-hook-form';
-import { ImageBackground, Text, View } from 'react-native';
+import { ImageBackground, Pressable, Text, View } from 'react-native';
 
 import { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormPasswordInput, FormTextInput } from '@/components';
 import { OrView } from '@/components/OrView';
+import { login } from '@/database/services';
 import { loginScheema, LoginScheema } from '@/schemas';
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
@@ -32,6 +33,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
 
   async function handleLogin(data: LoginScheema) {
     console.log(data);
+    await login(data.email, data.password);
   }
 
   function forgotPassword() {
@@ -60,9 +62,9 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
               <FormPasswordInput control={control} name="password" placeholder="Senha" />
             </View>
 
-            {/* <Pressable onPress={forgotPassword}>
+            <Pressable onPress={forgotPassword}>
               <Text className="my-6 text-right font-bold text-blue-500">Esqueceu a senha?</Text>
-            </Pressable> */}
+            </Pressable>
 
             <CustomButton
               title="Entrar"

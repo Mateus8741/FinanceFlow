@@ -1,3 +1,4 @@
+import { eq } from 'drizzle-orm';
 import * as Crypto from 'expo-crypto';
 
 import { db } from './drizzleDatabase';
@@ -51,5 +52,47 @@ export async function createAccount({
     await db.insert(users).values(newUser).onConflictDoNothing();
   } catch (error) {
     throw new Error('Failed to create user account');
+  }
+}
+
+export async function login(email: string, password: string) {
+  const user = await db.select().from(users).where(eq(users.email, email));
+
+  if (user.length === 0) {
+    throw new Error('User not found');
+  }
+
+  const hashedPassword = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    password
+  );
+
+  if (hashedPassword !== user[0].password) {
+    throw new Error('Credentials do not match');
+  }
+
+  return user[0];
+}
+
+export async function forgotPassword(email: string) {
+  const user = await db.select().from(users).where(eq(users.email, email));
+
+  if (user.length === 0) {
+    throw new Error('User not found');
+  }
+
+  const temporaryPassword = Crypto.randomUUID().slice(0, 8);
+
+  const hashedPassword = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    temporaryPassword
+  );
+
+  try {
+    await db.update(users).set({ password: hashedPassword }).where(eq(users.email, email));
+
+    return temporaryPassword;
+  } catch (error) {
+    throw new Error('Failed to reset password');
   }
 }
