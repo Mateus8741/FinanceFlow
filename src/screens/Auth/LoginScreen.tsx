@@ -32,7 +32,6 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   async function handleLogin(data: LoginScheema) {
-    console.log(data);
     await login(data.email, data.password);
   }
 

@@ -71,7 +71,14 @@ export async function login(email: string, password: string) {
     throw new Error('Credentials do not match');
   }
 
-  return user[0];
+  console.log({
+    id: user[0].id,
+    email: user[0].email,
+    name: user[0].name,
+    firstName: user[0].firstName,
+    lastName: user[0].lastName,
+    birthDate: user[0].birthDate,
+  });
 }
 
 export async function forgotPassword(email: string) {
