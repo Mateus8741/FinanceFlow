@@ -3,15 +3,17 @@ import { useColorScheme } from 'nativewind';
 import { useForm } from 'react-hook-form';
 import { ImageBackground, Pressable, Text, View } from 'react-native';
 
-import { AuthScreenProps } from '@/Routes';
+import type { AuthScreenProps } from '@/Routes';
 import BlurFormDark from '@/assets/BlurFormDark.png';
 import BlurFormLight from '@/assets/BlurFormLight.png';
 import { Box, CustomButton, FormPasswordInput, FormTextInput } from '@/components';
 import { OrView } from '@/components/OrView';
+import { useUserStorage } from '@/contexts/useUserStorage';
 import { login } from '@/database/services';
-import { loginScheema, LoginScheema } from '@/schemas';
+import { type LoginScheema, loginScheema } from '@/schemas';
 
-export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
+export function LoginScreen({ navigation }: Readonly<AuthScreenProps<'LoginScreen'>>) {
+  const { setUser } = useUserStorage();
   const {
     control,
     handleSubmit,
@@ -32,7 +34,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   const BlurFormColor = colorScheme === 'dark' ? BlurFormDark : BlurFormLight;
 
   async function handleLogin(data: LoginScheema) {
-    await login(data.email, data.password);
+    await login(data.email, data.password, setUser);
   }
 
   function forgotPassword() {

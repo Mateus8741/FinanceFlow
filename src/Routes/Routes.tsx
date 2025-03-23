@@ -4,8 +4,14 @@ import React from 'react';
 import { AppStack } from './AppStack';
 import { AuthStack } from './AuthStack';
 
-export function Routes() {
-  const user = false;
+import { useUserStorage } from '@/contexts/useUserStorage';
 
-  return <NavigationContainer>{user ? <AppStack /> : <AuthStack />}</NavigationContainer>;
+export function Routes() {
+  const { user } = useUserStorage();
+
+  return (
+    <NavigationContainer>
+      {user?.user_metadata.id ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 }

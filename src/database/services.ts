@@ -4,6 +4,8 @@ import * as Crypto from 'expo-crypto';
 import { db } from './drizzleDatabase';
 import { users } from './schema.drizzle';
 
+import type { UserSchema } from '@/schemas';
+
 /**
  * Função para criar uma nova conta de usuário.
  * @param email - O email do usuário.
@@ -55,7 +57,11 @@ export async function createAccount({
   }
 }
 
-export async function login(email: string, password: string) {
+export async function login(
+  email: string,
+  password: string,
+  setUser: (user: UserSchema | null) => void
+) {
   const user = await db.select().from(users).where(eq(users.email, email));
 
   if (user.length === 0) {
@@ -71,14 +77,21 @@ export async function login(email: string, password: string) {
     throw new Error('Credentials do not match');
   }
 
-  console.log({
-    id: user[0].id,
-    email: user[0].email,
-    name: user[0].name,
-    firstName: user[0].firstName,
-    lastName: user[0].lastName,
-    birthDate: user[0].birthDate,
-  });
+  const userData = {
+    user_metadata: {
+      id: user[0].id,
+      email: user[0].email ?? '',
+      first_name: user[0].firstName ?? '',
+      last_name: user[0].lastName ?? '',
+      birth_date: user[0].birthDate ?? '',
+    },
+  };
+
+  setUser(userData);
+}
+
+export async function logout(setUser: (user: UserSchema | null) => void) {
+  setUser(null);
 }
 
 export async function forgotPassword(email: string) {
